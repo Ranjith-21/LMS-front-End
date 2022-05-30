@@ -42,8 +42,8 @@ let handleClose=()=>
           {/* <Button variant="warning" style={{ padding: '5px 10px', color: 'white' }} ><i class="fa-solid fa-plus"></i> &nbsp; New Mentor</Button> */}
         </Container>
       </Navbar>
-      <Table striped bordered hover>
-        <thead>
+      <Table>
+        <thead style={{backgroundColor:'#e9eef7'}}>
           <tr>
             <th><input type='checkbox' /></th>
             <th>No</th>
@@ -66,7 +66,7 @@ let handleClose=()=>
             <td>90%</td>
             <td>Fresher</td>
             <td>7894561230</td>
-            <td><button className='Approve'  >Approve</button> &nbsp;  <button onClick={openShowReason} className='Reject'>Request</button></td>
+            <td><button className='Approve'  >Approve</button> &nbsp;  <button onClick={openShowReason} className='Reject'>Reject</button></td>
           </tr>
         </tbody>
       </Table>

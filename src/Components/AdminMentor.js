@@ -60,8 +60,8 @@ function AdminMentor() {
           <Button variant="warning" style={{ padding: '5px 10px', color: 'white' }} onClick={openAddMentor} ><i class="fa-solid fa-plus"></i> &nbsp; New Mentor</Button>
         </Container>
       </Navbar>
-      <Table striped bordered hover>
-        <thead>
+      <Table>
+        <thead style={{backgroundColor:'#e9eef7'}}>
           <tr>
             <th><input type='checkbox' /></th>
             <th>No</th>
@@ -82,12 +82,12 @@ function AdminMentor() {
             <td>
               <Stack direction="row" spacing={1}>
                 {chips.map((val) => {
-                  return <Chip label={val} variant="outlined" onDelete={handleDelete} />
+                  return <Chip style={{backgroundColor:'#086288',color:'white',padding:'2px 1px',fontSize:'12px'}} label={val} variant="outlined" onDelete={handleDelete} />
                 })}
 
               </Stack>
             </td>
-            <td><button style={{ border: 'none' }} onClick={openEditMentor} ><i class="fa-solid fa-pen"></i></button> &nbsp;  <button style={{ border: 'none' }} ><i class="fa-solid fa-trash-can"></i></button></td>
+            <td><button style={{ border: 'none',backgroundColor:'white' }} onClick={openEditMentor} ><i class="fa-solid fa-pen"></i></button> &nbsp;  <button style={{ border: 'none',backgroundColor:'white' }} ><i class="fa-solid fa-trash-can"></i></button></td>
           </tr>
         </tbody>
       </Table>

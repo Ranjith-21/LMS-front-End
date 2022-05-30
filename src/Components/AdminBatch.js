@@ -7,6 +7,24 @@ import Stack from '@mui/material/Stack';
 function AdminBatch() {
     const [showAddNewBatch, setshowAddNewBatch] = useState(false)
     const [showEditBatch, setshowEditBatch] = useState(false)
+    const [showStatus, setshowStatus] = useState(false)
+    
+    let openStatus=()=>
+    {
+      setshowStatus(true)
+    }
+    
+    let closeStatus=()=>
+    {
+      setshowStatus(false)
+    }
+    
+    let handleClose=()=>
+    {
+      closeStatus()
+    }
+
+
 
     let openEditBatch=()=>
     {
@@ -62,8 +80,8 @@ function AdminBatch() {
     <Button variant="warning" style={{padding:'5px 10px',color:'white'}} onClick={openAddNewBatch} > <i class="fa-solid fa-plus"></i> &nbsp; New Batch</Button>
   </Container>
 </Navbar>
-            <Table striped bordered hover>
-                <thead>
+            <Table>
+                <thead style={{backgroundColor:'#e9eef7'}}>
                     <tr>
                         <th><input type='checkbox' /></th>
                         <th>No</th>
@@ -85,99 +103,25 @@ function AdminBatch() {
                         <td>abcd</td>
                         <td>Satyam</td>
                         <td>
-                        <Stack direction="row" spacing={1}>
+                        <Stack  direction="row" spacing={1}>
                             {chips.map((val)=>
                             {
-                                return <Chip label={val} variant="outlined" onDelete={handleDelete} />
+                                return <Chip style={{backgroundColor:'#086288',color:'white',padding:'2px 1px',fontSize:'12px'}} label={val} variant="outlined" onDelete={handleDelete} />
                             })}
-      
-    </Stack>
+                        </Stack>
                         </td>
                         <td>12 Mar 2022</td>
                         <td>04 Dec 2022</td>
-                        <td><select name="status" id="cars">
+                        <td><select name="status" id="cars" style={{border:'none'}} onChange={openStatus}>
                             <option value="inProgress">InProgress</option>
                             <option value="pending">Pending</option>
                             <option value="completed">Completed</option>
                         </select></td>
-                        <td><button style={{border:'none'}} onClick={openEditBatch} ><i class="fa-solid fa-pen"></i></button> &nbsp;  <button style={{border:'none'}} ><i class="fa-solid fa-trash-can"></i></button></td>
+                        <td><button style={{border:'none',backgroundColor:'white'}} onClick={openEditBatch} ><i class="fa-solid fa-pen"></i></button> &nbsp;  <button style={{border:'none',backgroundColor:'white'}} ><i class="fa-solid fa-trash-can"></i></button></td>
                     </tr>
                 </tbody>
             </Table>
-        
-
-        
-            <Modal show={showAddNewBatch} onHide={handleCloseAdd}>
-        <Modal.Header closeButton>
-          <Modal.Title>Add New Batch</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Batch Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder=""
-                autoFocus
-              />
-               </Form.Group>
-              <Form.Group className="mb-3" controlId="exampleForm.ControlInput1" >
-              <Form.Label>Mentor Name</Form.Label>
-              <Form.Control
-                list='Mentors'
-                name='MentorsName'
-                placeholder=""
-                autoFocus
-              />
-              <datalist id='Mentors'>
-                  <option value='Satyam'/>
-                  <option value='Ranjith'/>
-                  <option value='Hemanth'/>
-              </datalist>
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="exampleForm.ControlInput1" >
-              <Form.Label>Technologies </Form.Label>
-              <Form.Control
-                list='technologies'
-                name='TechnologiesData'
-                placeholder=""
-                autoFocus
-              />
-              <datalist id='technologies'>
-                  <option value='React'/>
-                  <option value='Java'/>
-                  <option value='Javascript'/>
-              </datalist>
-              </Form.Group>
-
-              <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Start Date</Form.Label>
-              <Form.Control
-                type="date"
-                placeholder=""
-                autoFocus
-              />
-               </Form.Group>
-              
-               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>End Date</Form.Label>
-              <Form.Control
-                type="date"
-                placeholder=""
-                autoFocus
-              />
-               </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseAdd}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleCloseAdd}>
-           Create
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      
 
 
       <Modal show={showEditBatch} onHide={handleCloseEdit}>
@@ -253,6 +197,28 @@ function AdminBatch() {
       </Modal>
 
     
+    
+      <Modal show={showStatus} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Reason to Change Status</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Reason</Form.Label>
+              <Form.Control as="textarea" rows={3} />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleClose}>
+            Submit
+          </Button>
+        </Modal.Footer>
+      </Modal>
 
 
 

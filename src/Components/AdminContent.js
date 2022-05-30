@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './AdminContent.css'
 import { Breadcrumb, Button, Container, Navbar, Row } from 'react-bootstrap'
 import { Link, Route, Routes } from 'react-router-dom';
-import AdminMentor from './AdminMentor';
+import AdminMentor from './AdminMentor' ;
 import AdminRequest from './AdminRequest';
 import AdminBatch from './AdminBatch';
 import InputComponent from './atoms/InputComponent';
@@ -10,17 +10,56 @@ import InputComponent from './atoms/InputComponent';
 // const { Sider, Content,Header } = Layout;
 
 function AdminContent() {
+const [isBatch, setisBatch] = useState(false)
+const [isMentor, setisMentor] = useState(false)
+const [isSignup, setisSignup] = useState(false)
+
+let changeBatchImage=()=>
+{
+  if(isBatch===false)
+  {
+    setisBatch(true)
+    if(isMentor || isSignup)
+    {
+      setisMentor(false)
+      setisSignup(false)
+    }
+  }
+}
+
+let changeMentorImage=()=>
+{
+  setisMentor(true)
+  if(isBatch || isSignup)
+  {
+    setisBatch(false)
+    setisSignup(false)
+  }
+}
+
+let changeSignupImage=()=>
+{
+  setisSignup(true)
+  if(isBatch || isMentor)
+  {
+    setisBatch(false)
+    setisMentor(false)
+  }
+}
+
+
+
   return (
     <div >
       <Navbar className='navBar'>
         <Container fluid>
           <Navbar.Brand className='justify-content-start'><img src={require('./../Assests/logob.png')} style={{ width: '150px' }} alt='Techno Elevate' /></Navbar.Brand>
           <Navbar.Toggle />
-          <Navbar.Text className='justify-content-center' >
+          <Navbar.Text className='justify-content-center' style={{width:'500px'}} >
             <div class="form-group has-search">
               <span class="fa fa-search form-control-feedback"></span>
               {/* <input type="text" class="form-control" placeholder="Search" style={{ width: '500px' }} /> */}
-              <InputComponent placeholder='Search' style={{width:"500px"}}  type='text' className='form-control'/>
+              <InputComponent placeholder='Search' style={{width:"100%"}}  type='text' className='form-control'/>
             </div>
           </Navbar.Text>
           <Navbar.Text className='jsutify-content-end'  >
@@ -28,43 +67,56 @@ function AdminContent() {
           </Navbar.Text>
         </Container>
       </Navbar>
-      {/* <Breadcrumb style={{position:'absolute',top:'85px',left:'100px',fontSize:'12px'}} >
-  <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
-  <Breadcrumb.Item href="https://getbootstrap.com/docs/4.0/components/breadcrumb/">
-    Library
-  </Breadcrumb.Item>
-  <Breadcrumb.Item active>Data</Breadcrumb.Item>
-</Breadcrumb>  */}
-
-      {/* <Layout style={{border:'1px solid red'}} >
-          <Sider  style={{display:'flex',flexDirection:'column'}} >
-            <br/>
-            <Link to='/' ><Button variant='light' style={{backgroundColor:'none'}} ><img src={require('./../Assests/Batch.png')}  alt='' /></Button></Link>
-            <br/> <hr/>
-            <Link to='/Admin/Mentor' ><Button variant='light' style={{backgroundColor:'none'}} ><img src={require('./../Assests/Mentor.png')} alt='' /></Button></Link>
-            <br/><hr/>
-            <Link to='/Admin/Request' ><Button variant='light' style={{backgroundColor:'none'}} ><img src={require('./../Assests/Request.png')} alt='' /></Button></Link>
-          </Sider>
-       <Layout>
-            <Content>
-              <div className='site-card-border-less-wrapper' >content </div>
-              
-              </Content>
-              </Layout>
-          
-      </Layout> */}
-
+  
       <Row>
-        <div className='col-lg-1' style={{ width: '65px', height: '85vh', boxShadow: 'rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px' }}  >
+        <div className='col-lg-1 mainAdmin' >
           <br />
-          <Link to='/Admin/Batch' ><button className='BatchIcon' style={{ backgroundColor: 'none' }} ><img alt='' width='25px' style={{marginLeft:'8px'}}  src={require('./../Assests/Batch.png')} /></button></Link>
+          {isBatch?
+          <Link to='/Admin/Batch'>
+           <button className='BatchIcon1' value='admin' style={{ backgroundColor: 'none' }}  onClick={changeBatchImage} >
+      <img  width='25px' alt='' style={{marginLeft:'10px'}} src={require('./../Assests/Batch1.png')} />
+      </button>
+          </Link>:
+          <Link to='/Admin/Batch'>
+          <button className='BatchIcon' style={{ backgroundColor: 'none' }}  onClick={changeBatchImage}>
+          <img alt='' width='25px' style={{marginLeft:'10px'}}  src={require('./../Assests/Batch.png')} />
+          </button>
+          </Link>
+          }
           <br /> <hr style={{ width: '51px' }} />
-          <Link to='/Admin/Mentor' ><button className='MentorIcon' value='admin' style={{ backgroundColor: 'none' }}  ><img  width='25px' alt='' style={{marginLeft:'8px'}} src={require('./../Assests/Mentor.png')} /></button></Link>
-          <br /><hr style={{ width: '51px' }} />
-          <Link to='/Admin/Request' ><button className='RequestIcon' style={{ backgroundColor: 'none' }}  ><img width='25px' alt='' style={{marginLeft:'8px'}} src={require('./../Assests/Request.png')} /></button></Link>
+          {isMentor?
+          <Link to='/Admin/Mentor' >
+            <button className='MentorIcon1' value='admin' style={{ backgroundColor: 'none' }} onClick={changeMentorImage}  >
+            <img  width='25px' alt='' style={{marginLeft:'10px'}} src={require('./../Assests/Mentor1.png')} />
+            </button>
+          </Link>:
+          <Link  to='/Admin/Mentor' >
+          <button className='MentorIcon' value='admin' style={{ backgroundColor: 'none' }}  onClick={changeMentorImage}  >
+            <img  width='25px' alt='' style={{marginLeft:'10px'}} src={require('./../Assests/Mentor.png')} />
+            </button>
+          </Link>
+          }
+<br /><hr style={{ width: '51px' }} />
+
+          {isSignup?
+          <Link to='/Admin/Request'>
+            <button className='RequestIcon1' style={{ backgroundColor: 'none' }} onClick={changeSignupImage}  >
+            <img width='25px' alt='' style={{marginLeft:'10px'}} src={require('./../Assests/Request1.png')} />
+            </button>
+          </Link>:
+          <Link  to='/Admin/Request'>
+            <button className='RequestIcon' style={{ backgroundColor: 'none' }} onClick={changeSignupImage}  >
+            <img width='25px' alt='' style={{marginLeft:'10px'}} src={require('./../Assests/Request.png')} />
+            </button>
+          </Link>
+          }
+
+
+
+      
         </div>
         {/* <div className='col-lg-1 col-md-1 col-sm-1' style={{width:'5px'}} ></div> */}
-        <Breadcrumb style={{ position: 'absolute', top: '85px', left: '65px', fontSize: '12px' }} >
+        <Breadcrumb className='adminBread'>
           <Breadcrumb.Item href="#" active>Home</Breadcrumb.Item>
           <Breadcrumb.Item href='/Admin/Batch'>Batch</Breadcrumb.Item>
           <Breadcrumb.Item href="/Admin/Mentor">
@@ -74,7 +126,7 @@ function AdminContent() {
             Request
           </Breadcrumb.Item>
         </Breadcrumb>
-        <div style={{ marginTop: '40px', width: '90%', boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px', marginLeft: '20px', overflow: 'hidden' }} className='col-lg-10 col-md-10 col-sm-10 col-xs-10' ><Routes>
+        <div className=' adminRoutes col-lg-10 col-md-10 col-sm-10 col-xs-10' ><Routes>
           <Route path='/Admin/Batch' element={<AdminBatch />} />
           <Route path='/Admin/Mentor' element={<AdminMentor />} />
           <Route path='/Admin/Request' element={<AdminRequest />} />

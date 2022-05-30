@@ -20,59 +20,45 @@
     color: #aaa;
 }
 
-/* .ant-layout-sider{
-    border: 1px solid red;
-    max-width: 65px !important;
-    min-width: 10px !important;
-    max-height:100vh;
-    min-height:89vh ;
-   margin-top: -210px; 
-   border-right: 1px solid grey;
- }
-.ant-layout-has-sider
+.mainAdmin
 {
-    max-height:100vh;
-    min-height:89vh ;
+    width: 65px;
+    height: 85vh;
+     box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px
 }
-.ant-layout
+.adminBread
 {
-    max-height:100vh;
-    min-height:89vh ;
+    position: absolute;
+     top: 85px;
+      left: 65px;
+       font-size: 12px
 }
-.ant-layout-content
+.adminRoutes
 {
-   
-    border: 1px solid green;
-    background-color: #aaa; 
-    line-height: 50px;
-    min-width: 50%;
-    max-width: 50%;
-}  
+    margin-top: 40px;
+    width: 90%;
+     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px ;
+     margin-left: 20px;
+      overflow: hidden
+}
 
-.ant-layout-sider .ant-layout-sider-dark
-{
-    border: 1px solid yellow;
-    max-width: 500px;
-} */
-
-/* .BatchIcon:focus
-{
-    background-color: #075575;
-}
-.MentorIcon:focus
-{
-    background-color: #075575;
-}
-.RequestIcon:focus
-{
-    background-color: #075575;
-    
-} */
 
 .BatchIcon
 {
     background-color: white;
     border: none;
+}
+
+.BatchIcon1
+{
+    background-color: #086288;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 0px;
+    padding-right: 5px;
+    border-radius: 8px;
+    border: none;
+    margin-left: 5px;
 }
 
 .MentorIcon
@@ -81,12 +67,34 @@
     border: none;
 }
 
+.MentorIcon1
+{
+    background-color: #086288;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 0px;
+    padding-right: 5px;
+    border-radius: 8px;
+    border: none;
+    margin-left: 5px;
+}
+
 .RequestIcon
 {
     background-color: white;
     border: none;
 }
-
+.RequestIcon1
+{
+    background-color: #086288;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 0px;
+    padding-right: 5px;
+    border-radius: 8px;
+    border: none;
+    margin-left: 5px;
+}
 
 
 
@@ -116,4 +124,30 @@
 {
     color: white;
     background-color: #CE000E;
+}
+
+@media  (max-width:836px) {
+    .adminRoutes{
+        width: 70%;
+       overflow: scroll;
+    }
+}
+
+.avatar
+{
+    margin-right: 50px;
+}
+
+@media (max-width: 836px) {
+    .batchTable
+    {
+        width: 100%;
+    }
+}
+
+@media (max-width: 500px) {
+    .batch2Table
+    {
+        width: 100vh;
+    }
 }
