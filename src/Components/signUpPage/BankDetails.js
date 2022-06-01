@@ -1,16 +1,27 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Col,
-  Container,
-  Form,
-  Nav,
-  Navbar,
-  Row,
-} from "react-bootstrap";
+import { Button, Col, Container, Form, Nav, Navbar, Row,} from "react-bootstrap";
 import { useNavigate } from "react-router";
+import './SignUp.css'
+import FormControl from './../atoms/FormControl';
+import FormSelect from './../atoms/FormSelect';
+import ButtonComp from "../atoms/ButtonComp";
 
 function BankDetails() {
+  const [branch, setbranch] = useState(
+    [
+      'Select Below','Bangalore','Hyderabad'
+    ]
+  )
+  const [state, setstate] = useState(
+    [
+      'Select Below','Karnataka','Kerala','TamilNadu'
+    ]
+  )
+  const [bankType, setbankType] = useState(
+    [
+      'Select Below','Savings','Salary','Current'
+    ]
+  )
   const [bankData,   setBankData] = useState({
     AccountNumber: "",
     BankName: "",
@@ -76,6 +87,7 @@ let ValidateFunction = () => {
                 className='header'
               >
                 Bank Details
+                <hr size='10' />
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
@@ -91,158 +103,27 @@ let ValidateFunction = () => {
         </navbar>
         <Form className="container fluid  mt-3 square border border-light border-4 rounded-3 ">
           <Row className="mb-3">
-            <Form.Group
-              style={{ textAlign: "left" }}
-              as={Col}
-              controlId="formGridPassword"
-            >
-              <Form.Label
-              className="labelForm"
-              >
-                Account No.
-              </Form.Label>
-              <Form.Control
-              className="addressForm"
-                type="text"
-                name="AccountNumber"
-                value={bankData.AccountNumber}
-                onChange={getBankData}
-              />
-            </Form.Group>
-            <Form.Group
-              style={{ textAlign: "left" }}
-              as={Col}
-              controlId="formGridPassword"
-            >
-              <Form.Label
-                className="labelForm"
-              >
-                Bank Name
-              </Form.Label>
-              <Form.Control
-                className="addressForm"
-                type="text"
-                name="BankName"
-                value={bankData.BankName}
-                onChange={getBankData}
-
-              />
-            </Form.Group>
-            <Form.Group
-              style={{ textAlign: "left" }}
-              as={Col}
-              controlId="formGridEmail"
-            >
-              <Form.Label
-                  className="labelForm"
-              >
-                Account Type
-              </Form.Label>
-              <Form.Select
-                className="addressForm"
-                aria-label="Default select example"
-                name="AccountType"
-                value={bankData.AccountType}
-                onChange={getBankData}
-              >
-                <option>Select Below</option>
-                <option value="1">Savings</option>
-                <option value="2">Current</option>
-                <option value="3">Salary</option>
-              </Form.Select>
-            </Form.Group>
-            <Form.Group
-              style={{ textAlign: "left" }}
-              as={Col}
-              //   controlId="formGridEmail"
-            >
-              <Form.Label
-                  className="labelForm"
-              >
-                IFSC Code
-              </Form.Label>
-              <Form.Control
-                 className="addressForm"
-                type="text"
-                name="IfscCode"
-                value={bankData.IfscCode}
-                onChange={getBankData}
-              />
-            </Form.Group>
+            <FormControl style={{ textAlign: "left" }}  as={Col} label={'Account No.'}  type="text" name="AccountNumber" value={bankData.AccountNumber} onChange={getBankData} />
+            <FormControl  style={{ textAlign: "left" }} as={Col} label={'Bank Name'}  type="text" name="BankName"  value={bankData.BankName} onChange={getBankData} />
+           <FormSelect style={{ textAlign: "left" }} as={Col}  name="AccountType"  value={bankData.AccountType} onChange={getBankData} options={bankType} label={'Account Type'} />
+            <FormControl style={{ textAlign: "left" }} as={Col} label={'IFSC Code'} type="text" name="IfscCode"  value={bankData.IfscCode} onChange={getBankData}  />
           </Row>
           <Row className="mb-3">
-            <Form.Group
-              style={{ textAlign: "left" }}
-              as={Col}
-              controlId="formGridEmail"
-            >
-              <Form.Label
-                 className="labelForm"
-              >
-                Branch
-              </Form.Label>
-              <Form.Select
-                 className="addressForm"
-                aria-label="Default select example"
-                name="Branch"
-                value={bankData.Branch}
-                onChange={getBankData}
-              >
-                <option value="1">Select Below</option>
-                <option value="2">Karnataka</option>
-                <option value="5">Chattisgadh</option>
-                <option value="3">Odisha</option>
-                <option value="4">WestBengal</option>
-              </Form.Select>
-            </Form.Group>
-
-            <Form.Group
-              style={{ textAlign: "left" }}
-              as={Col}
-              controlId="formGridEmail"
-            >
-              <Form.Label
-                  className="labelForm"
-              >
-                State
-              </Form.Label>
-              <Form.Select
-                 className="addressForm"
-                aria-label="Default select example"
-                name="State"
-                valuue={bankData.State}
-                onChange={getBankData}
-              >
-                <option value="1">Select Below</option>
-                <option value="2">Karnataka</option>
-                <option value="4">WestBengal</option>
-                <option value="5">Chattisgadh</option>
-                <option value="3">Odisha</option>
-              </Form.Select>
-            </Form.Group>
+            <FormSelect style={{ textAlign: "left" }}as={Col} label={'Branch'}  name="Branch" value={bankData.Branch}  onChange={getBankData}  options={branch}  />
+          
+          <FormSelect   style={{ textAlign: "left" }}
+              as={Col} label={'State'}  name="State"
+              valuue={bankData.State}
+              onChange={getBankData} options={state}  />
           </Row>
           <Row>
             <Navbar
-              className="container fluid  col-8 mt-5 square border border-light border-4 rounded-3 "
-              expand="lg"
-            >
+              className="container fluid  col-8 mt-5 square border border-light border-4 rounded-3 " expand="lg">
               <Container fluid>
-                <Button
-                  variant="secondary"
-                  size="md"
-                  onClick={navigatePrevious}
-                >
-                  Previous
-                </Button>
-                <Nav
-                  className="me-auto my-2 my-lg-0"
-                  style={{ maxHeight: "100px" }}
-                  navbarScroll
-                ></Nav>
+                <ButtonComp variant="secondary"  size="md" onClick={navigatePrevious} label={'Previous'}   />
+                <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: "100px" }} navbarScroll></Nav>
                 <Form className="d-flex">
-                  <Button variant="primary" size="md" onClick={ValidateFunction}>
-                    Next
-                  </Button>
+                  <ButtonComp  variant="primary" size="md" onClick={ValidateFunction} label={'Next'} /> 
                 </Form>
               </Container>
             </Navbar>

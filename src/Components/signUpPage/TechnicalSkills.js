@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import {Button,Col,Container,Form,Nav,Navbar,Row,} from "react-bootstrap";
 import { useNavigate } from 'react-router';
+import FormSelect from '../atoms/FormSelect';
+import FormControl from './../atoms/FormControl';
+import ButtonComp from './../atoms/ButtonComp';
 
 
 function TechnicalSkills() {
@@ -9,6 +12,10 @@ const [technicalData, setTechnicalData] = useState({
   SkillRatings:"",
   YEarOfExperience:"",
 })
+
+const [exp, setexp] = useState([
+  'Select Below',1,2,3,4,5
+])
 
 let getTechnicalDetails=(e)=>{
   setTechnicalData({...technicalData,[e.target.name]:e.target.value})
@@ -65,6 +72,7 @@ let ValidateFunction = () => {
             href="/Secondary"
             className='header'
           >Technical Skills
+          <hr size='10' />
           </Nav.Link> 
         </Nav.Item>
         <Nav.Item>
@@ -77,91 +85,18 @@ let ValidateFunction = () => {
     </navbar>
     <Form className="container fluid  mt-3 square border border-light border-4 rounded-3 ">
       <Row className="mb-3">
-        <Form.Group
-          style={{ textAlign: "left" }}
-          as={Col}
-          controlId="formGridPassword"
-        >
-          <Form.Label
-          className='labelForm'
-          >
-        Skill Type
-          </Form.Label>
-          <Form.Control
-           className='addressForm'
-            type="text"
-            name="SkillType"
-            value={technicalData.SkillType}
-            onChange={getTechnicalDetails}
-          />
-        </Form.Group>
-        <Form.Group
-          style={{ textAlign: "left" }}
-          as={Col}
-          controlId="formGridPassword"
-        >
-          <Form.Label
-            style={{
-              fontFamily: "Open Sans",
-              fontSize: "21px",
-              color: "#707070",
-            }}
-          >
-    Skill Rating
-          </Form.Label>
-          <Form.Control
-           className='addressForm'
-            type="text"
-            name='SkillRatings'
-            value={technicalData.SkillRatings}
-            onChange={getTechnicalDetails}
-          />
-        </Form.Group>
-      <Form.Group
-          style={{ textAlign: "left" }}
-          as={Col}
-          controlId="formGridEmail"
-        >
-          <Form.Label
-            className='labelForm'
-          >
-           Year Of Experience(over skill)
-          </Form.Label>
-          <Form.Select
-            className='addressForm'
-            aria-label="Default select example"
-            name="YEarOfExperience"
-            value={technicalData.YEarOfExperience}
-            onChange={getTechnicalDetails}
-          >
-            <option></option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="3">4</option>
-                <option value="3">5</option>
-          </Form.Select>
-        </Form.Group>
-
+        <FormControl  style={{ textAlign: "left" }} as={Col} label={'Skill Type'} type="text"  name="SkillType"  value={technicalData.SkillType}  onChange={getTechnicalDetails}  />
+        <FormControl style={{ textAlign: "left" }} as={Col} label={'Skill Rating'}  type="text"  name='SkillRatings'  value={technicalData.SkillRatings} onChange={getTechnicalDetails} />
+        <FormSelect  style={{ textAlign: "left" }} as={Col} label={'Year Of Experience (Over Skill)'} name="YEarOfExperience" value={technicalData.YEarOfExperience} onChange={getTechnicalDetails} options={exp} />
+  
       </Row>
       <Row>
-        <Navbar
-          className="container fluid  col-8 mt-5 square border border-light border-4 rounded-3 "
-          expand="lg"
-        >
+        <Navbar className="container fluid  col-8 mt-5 square border border-light border-4 rounded-3 " expand="lg" >
           <Container fluid>
-          <Button variant="secondary" size="md" onClick={navigatePrevious} >
-            Previous
-          </Button>
-          <Nav
-            className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: "100px" }}
-            navbarScroll
-          ></Nav>
+            <ButtonComp variant="secondary" size="md" onClick={navigatePrevious}  label={'Previous'} />
+          <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: "100px" }} navbarScroll></Nav>
           <Form className="d-flex">
-            <Button variant="primary" size="md" onClick={ValidateFunction}>
-              Next
-            </Button>
+            <ButtonComp variant="primary" size="md" onClick={ValidateFunction} label={'Next'} />
           </Form>
           </Container>
         </Navbar>

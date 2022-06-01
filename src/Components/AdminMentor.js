@@ -2,47 +2,46 @@ import React, { useState } from 'react'
 import { Button, Container, Form, Modal, Navbar, Table } from 'react-bootstrap'
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
+// import { ModalComponent } from './atoms/ModalComponent';
+import FormComponent from './atoms/FormComponent';
+import ModalComponent from './atoms/ModalComponent';
+import DropDown from './atoms/DropDown';
+import InputComp from './atoms/InputComp';
+// import { FormComponent } from './atoms/FormComponent';
 
 function AdminMentor() {
   const [showAddNewMentor, setshowAddNewMentor] = useState(false)
   const [showEditMentor, setshowEditMentor] = useState(false)
+  const [skills, setskills] = useState(['React','java','javascript'])
 
 
-  let openEditMentor=()=>
-  {
+  let openEditMentor = () => {
     setshowEditMentor(true)
   }
 
-  let closeEditMentor=()=>
-  {
+  let closeEditMentor = () => {
     setshowEditMentor(false)
   }
 
-  let handleCloseEdit=()=>
-  {
+  let handleCloseEdit = () => {
     closeEditMentor()
   }
 
-  let openAddMentor=()=>
-  {
+  let openAddMentor = () => {
     setshowAddNewMentor(true)
   }
 
-  let closeAddMentor=()=>
-  {
+  let closeAddMentor = () => {
     setshowAddNewMentor(false)
   }
 
-  let handleCloseAdd=()=>
-  {
+  let handleCloseAdd = () => {
     closeAddMentor()
   }
 
 
-  const [chips] = useState(["react",'java','python'])
-  const handleDelete = () => {
-      console.info('You clicked the delete icon.');
-    };
+  const [chips] = useState(["react", 'java', 'python'])
+ 
   return (
     <div>
       <Navbar style={{ height: '60px' }} >
@@ -61,7 +60,7 @@ function AdminMentor() {
         </Container>
       </Navbar>
       <Table>
-        <thead style={{backgroundColor:'#e9eef7'}}>
+        <thead style={{ backgroundColor: '#e9eef7' }}>
           <tr>
             <th><input type='checkbox' /></th>
             <th>No</th>
@@ -82,140 +81,37 @@ function AdminMentor() {
             <td>
               <Stack direction="row" spacing={1}>
                 {chips.map((val) => {
-                  return <Chip style={{backgroundColor:'#086288',color:'white',padding:'2px 1px',fontSize:'12px'}} label={val} variant="outlined" onDelete={handleDelete} />
+                  return <Chip style={{ backgroundColor: '#086288', color: 'white', padding: '2px 1px', fontSize: '12px' }} label={val} variant="outlined" />
                 })}
 
               </Stack>
             </td>
-            <td><button style={{ border: 'none',backgroundColor:'white' }} onClick={openEditMentor} ><i class="fa-solid fa-pen"></i></button> &nbsp;  <button style={{ border: 'none',backgroundColor:'white' }} ><i class="fa-solid fa-trash-can"></i></button></td>
+            <td><button style={{ border: 'none', backgroundColor: 'white' }} onClick={openEditMentor} ><i class="fa-solid fa-pen"></i></button> &nbsp;  <button style={{ border: 'none', backgroundColor: 'white' }} ><i class="fa-solid fa-trash-can"></i></button></td>
           </tr>
         </tbody>
       </Table>
 
-      
-
-      <Modal show={showAddNewMentor} onHide={handleCloseAdd}>
-        <Modal.Header closeButton>
-          <Modal.Title>Add New Mentor</Modal.Title>
-        </Modal.Header>
+      <ModalComponent show={showAddNewMentor} onHide={handleCloseAdd} title={'Add New Mentor'} footerText={'Add'}>
         <Modal.Body>
           <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Mentor Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder=""
-                autoFocus
-              />
-               </Form.Group>
-
-               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Employee ID</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder=""
-                autoFocus
-              />
-               </Form.Group>
-
-               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Email ID</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder=""
-                autoFocus
-              />
-               </Form.Group>
-             
-              <Form.Group className="mb-3" controlId="exampleForm.ControlInput1" >
-              <Form.Label>Skills</Form.Label>
-              <Form.Control
-                list='skills'
-                name='Skills'
-                placeholder=""
-                autoFocus
-              />
-              <datalist id='skills'>
-                  <option value='React'/>
-                  <option value='Java'/>
-                  <option value='Javascript'/>
-              </datalist>
-              </Form.Group>
+            <InputComp  label={'Mentor Name'} className={'form-control mb-3'} type={'text'} />
+            <InputComp  label={'Employee ID'} className={'form-control mb-3'} type={'text'} />
+            <InputComp  label={'Email ID'} className={'form-control mb-3'} type={'email'} />
+            <DropDown option={skills} label={'Skills'} />
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseAdd}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleCloseAdd}>
-           Add
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      </ModalComponent>
 
-
-
-
-
-      <Modal show={showEditMentor} onHide={handleCloseEdit}>
-        <Modal.Header closeButton>
-          <Modal.Title>Edit Mentor</Modal.Title>
-        </Modal.Header>
+      <ModalComponent show={showEditMentor} onHide={handleCloseEdit} title='Edit Mentor' footerText='Edit'>
         <Modal.Body>
           <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Mentor Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder=""
-                autoFocus
-              />
-               </Form.Group>
-
-               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Employee ID</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder=""
-                autoFocus
-              />
-               </Form.Group>
-
-               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Email ID</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder=""
-                autoFocus
-              />
-               </Form.Group>
-             
-              <Form.Group className="mb-3" controlId="exampleForm.ControlInput1" >
-              <Form.Label>Skills</Form.Label>
-              <Form.Control
-                list='skills'
-                name='Skills'
-                placeholder=""
-                autoFocus
-              />
-              <datalist id='skills'>
-                  <option value='React'/>
-                  <option value='Java'/>
-                  <option value='Javascript'/>
-              </datalist>
-              </Form.Group>
+          <InputComp  label={'Mentor Name'} className={'form-control mb-3'} type={'text'} />
+            <InputComp  label={'Employee ID'} className={'form-control mb-3'} type={'text'} />
+            <InputComp  label={'Email ID'} className={'form-control mb-3'} type={'email'} />
+            <DropDown option={skills} label={'Skills'} />
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseEdit}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleCloseEdit}>
-           Edit
-          </Button>
-        </Modal.Footer>
-      </Modal>
-
+      </ModalComponent>
 
     </div>
   )

@@ -1,11 +1,17 @@
 import React, { useState } from 'react'
 import {Button,Col,Container,Form,Nav,Navbar,Row,} from "react-bootstrap";
 import { useNavigate } from 'react-router';
+import ButtonComp from '../atoms/ButtonComp';
+import FormControl from '../atoms/FormControl';
+import FormSelect from './../atoms/FormSelect';
+import LoginPage from './../LoginPage';
 
 
 
 function Contact() {
-  
+  const [contactType, setcontactType] = useState([
+   'Select Below', 1,2,3,4,5
+  ])
   const [contactData, setContactData] = useState({
     ContactType:"",
     ContactNumber:"+91",
@@ -21,19 +27,22 @@ console.log(contactData);
 let DatasentToLocalStorage = () => {
   localStorage.setItem("contact Details", JSON.stringify(contactData));
 };
+
+
+let navigate = useNavigate()
 let ValidateFunction = () => {
   if (
     contactData.ContactType &&
    contactData.ContactNumber
   ) {
     DatasentToLocalStorage();
+    navigate('/LoginPage')
     // navigateNext();
   } else {
     alert("Please Fill all the feilds");
   }
 };
  
-    let navigate = useNavigate()
 
     let navigatePrevious=()=>
     {
@@ -67,6 +76,7 @@ let ValidateFunction = () => {
               href="/Contact"
               className='header'
             >Contact
+            <hr size='10' />
             </Nav.Link> 
           </Nav.Item>
         </Nav>
@@ -74,75 +84,20 @@ let ValidateFunction = () => {
       <Form className="container fluid  mt-3 square border border-light border-4 rounded-3 ">
         <Row className="mb-3">
 
-          
-        <Form.Group
-            style={{ textAlign: "left" }}
-            as={Col}
-            controlId="formGridEmail"
-          >
-            <Form.Label
-             className='labelForm'
-            >
-            Contact Type
-            </Form.Label>
-            <Form.Select
-            className='addressForm'
-              aria-label="Default select example"
-              name="ContactType"
-              value={contactData.ContactType}
-              onChange={getContactData}
-            >
-              <option></option>
-                  <option >Select Below</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="3">4</option>
-                  <option value="3">5</option>
-            </Form.Select>
-          </Form.Group>
-          <Form.Group
-            style={{ textAlign: "left" }}
-            as={Col}
-            controlId="formGridPassword"
-          >
-            <Form.Label
-              className='labelForm'
-            >
-     Contact Number
-            </Form.Label>
-            <Form.Control
-              className='addressForm'
-              type="tel"
-              name="ContactNumber"
-              value={contactData.ContactNumber}
-              onChange={getContactData}
-              
-            />
-          </Form.Group>
+          <FormSelect style={{ textAlign: "left" }} as={Col} label={'Contact Type'}  name="ContactType" value={contactData.ContactType} onChange={getContactData} options={contactType}  />
+          <FormControl style={{ textAlign: "left" }} as={Col} label={'Contact Number'}  type="tel" name="ContactNumber" value={contactData.ContactNumber}   onChange={getContactData} />
         </Row>
         <Row>
           <p style={{ textAlign:'end',cursor:'pointer' }} >
           <i class="fa-solid fa-plus"></i>
           <b> Add</b>
             </p>
-          <Navbar
-            className="container fluid  col-8 mt-5 square border border-light border-4 rounded-3 "
-            expand="lg"
-          >
+          <Navbar className="container fluid  col-8 mt-5 square border border-light border-4 rounded-3 "expand="lg">
             <Container fluid>
-            <Button variant="secondary" size="md" onClick={navigatePrevious} >
-              Previous
-            </Button>
-            <Nav
-              className="me-auto my-2 my-lg-0"
-              style={{ maxHeight: "100px" }}
-              navbarScroll
-            ></Nav>
+              <ButtonComp  variant="secondary" size="md" onClick={navigatePrevious} label={'Previous'}  />
+            <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: "100px" }} navbarScroll></Nav>
             <Form className="d-flex">
-              <Button variant="primary" size="md" onClick={ValidateFunction}>
-                Submit
-              </Button>
+              <ButtonComp variant="primary" size="md" onClick={ValidateFunction} label={'Submit'}  />
             </Form>
             </Container>
           </Navbar>

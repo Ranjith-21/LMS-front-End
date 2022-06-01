@@ -64,34 +64,37 @@ let changeImage1=()=>
       </Navbar>
 
 
-    
       <Row>
-        <div className='col-lg-1 mainAdmin' >
+        <div className='col-lg-1 empAdmin' >
           <br />
           {isImage?<Link  to='/Mentor/DashBoard'>
-      <button  className='MentorIcon1' value='admin'onClick={changeImage} >
-      <img  width='25px' alt='' style={{marginLeft:'5px',backgroundColor:'#086288'}} src={require('./../../Assests/dashBoard.png')}/>
+      <button  className='dashboard1' value='admin'onClick={changeImage} >
+      <img  width='25px' alt='' src={require('./../../Assests/dashBoard.png')}/>
+      Dashboard
       </button>
       </Link>:
       <Link  to='/Mentor/DashBoard'>
-      <button className='MentorIcon' value='admin' style={{ backgroundColor: 'none' }}  onClick={changeImage} >
-      <img  width='25px' alt='' style={{marginLeft:'8px'}} src={require('./../../Assests/dashboard1.png')} />
+      <button className='dashboard' value='admin' style={{ backgroundColor: 'none' }}  onClick={changeImage} >
+      <img  width='25px' alt='' src={require('./../../Assests/dashboard1.png')} />
+      Dashboard
       </button>
       </Link>
-      } <br /> <hr style={{ width: '51px' }} /> 
+      } <br /> <hr style={{ width: '59px' }} /> 
 
       {isImage1?<Link to='/Mentor/Batch' >
-       <button  className='MentorIcon1' value='admin'onClick={changeImage1} >
-       <img  width='25px' alt='' style={{marginLeft:'5px',backgroundColor:'#086288'}} src={require('./../../Assests/Batch1.png')}/>
+       <button  className='empMentor1' value='admin'onClick={changeImage1} >
+       <img  width='25px' alt='' src={require('./../../Assests/Batch1.png')}/>
+       Mentor
        </button>
       </Link>:
        <Link  to='/Mentor/Batch'>
-      <button className='MentorIcon' value='admin' style={{ backgroundColor: 'none' }}  onClick={changeImage1} >
-      <img  width='25px' alt='' style={{marginLeft:'8px'}} src={require('./../../Assests/Batch.png')} />
+      <button className='empMentor' value='admin' style={{ backgroundColor: 'none' }}  onClick={changeImage1} >
+      <img  width='25px' alt='' src={require('./../../Assests/Batch.png')} />
+      Mentor
       </button>
        </Link>
       }
-<br /><hr style={{ width: '51px' }} />
+<br /><hr style={{ width: '59px' }} />
           </div>
           <Breadcrumb className='adminBread'>
           <Breadcrumb.Item href="#" active>Home</Breadcrumb.Item>

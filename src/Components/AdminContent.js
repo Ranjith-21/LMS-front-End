@@ -73,26 +73,30 @@ let changeSignupImage=()=>
           <br />
           {isBatch?
           <Link to='/Admin/Batch'>
-           <button className='BatchIcon1' value='admin' style={{ backgroundColor: 'none' }}  onClick={changeBatchImage} >
-      <img  width='25px' alt='' style={{marginLeft:'10px'}} src={require('./../Assests/Batch1.png')} />
+           <button className='BatchIcon1' value='admin' onClick={changeBatchImage} >
+      <img  width='25px' alt='' style={{marginLeft:'10px'}} src={require('./../Assests/Batch1.png')} />Batch
       </button>
           </Link>:
           <Link to='/Admin/Batch'>
-          <button className='BatchIcon' style={{ backgroundColor: 'none' }}  onClick={changeBatchImage}>
-          <img alt='' width='25px' style={{marginLeft:'10px'}}  src={require('./../Assests/Batch.png')} />
+          <button className='BatchIcon' onClick={changeBatchImage}>
+          <img alt='' width='25px' style={{marginLeft:'10px'}}  src={require('./../Assests/Batch.png')} />Batch
           </button>
           </Link>
           }
           <br /> <hr style={{ width: '51px' }} />
           {isMentor?
           <Link to='/Admin/Mentor' >
-            <button className='MentorIcon1' value='admin' style={{ backgroundColor: 'none' }} onClick={changeMentorImage}  >
-            <img  width='25px' alt='' style={{marginLeft:'10px'}} src={require('./../Assests/Mentor1.png')} />
+            <button className='MentorIcon1' value='admin'  onClick={changeMentorImage}  >
+            <img  width='25px' alt=''src={require('./../Assests/Mentor1.png')} />
+          
+            Mentor
             </button>
           </Link>:
           <Link  to='/Admin/Mentor' >
-          <button className='MentorIcon' value='admin' style={{ backgroundColor: 'none' }}  onClick={changeMentorImage}  >
-            <img  width='25px' alt='' style={{marginLeft:'10px'}} src={require('./../Assests/Mentor.png')} />
+          <button className='MentorIcon' value='admin'  onClick={changeMentorImage}  >
+            <img  width='25px' alt=''  src={require('./../Assests/Mentor.png')} />
+            &nbsp;
+            Mentor
             </button>
           </Link>
           }
@@ -100,13 +104,17 @@ let changeSignupImage=()=>
 
           {isSignup?
           <Link to='/Admin/Request'>
-            <button className='RequestIcon1' style={{ backgroundColor: 'none' }} onClick={changeSignupImage}  >
-            <img width='25px' alt='' style={{marginLeft:'10px'}} src={require('./../Assests/Request1.png')} />
+            <button className='RequestIcon1' onClick={changeSignupImage}  >
+            <img width='25px' alt='' style={{marginLeft:'0px'}} src={require('./../Assests/Request1.png')} />
+            &nbsp;
+            Request
             </button>
           </Link>:
           <Link  to='/Admin/Request'>
-            <button className='RequestIcon' style={{ backgroundColor: 'none' }} onClick={changeSignupImage}  >
-            <img width='25px' alt='' style={{marginLeft:'10px'}} src={require('./../Assests/Request.png')} />
+            <button className='RequestIcon'  onClick={changeSignupImage}  >
+            <img width='25px' alt='' style={{marginLeft:'0px'}} src={require('./../Assests/Request.png')} />
+            &nbsp;
+            Request
             </button>
           </Link>
           }
@@ -126,8 +134,9 @@ let changeSignupImage=()=>
             Request
           </Breadcrumb.Item>
         </Breadcrumb>
-        <div className=' adminRoutes col-lg-10 col-md-10 col-sm-10 col-xs-10' ><Routes>
-          <Route path='/Admin/Batch' element={<AdminBatch />} />
+        <div className=' adminRoutes col-lg-10 col-md-10 col-sm-10 col-xs-10' >
+          <Routes>
+          <Route path='/Admin/Batch' index element={<AdminBatch />} />
           <Route path='/Admin/Mentor' element={<AdminMentor />} />
           <Route path='/Admin/Request' element={<AdminRequest />} />
         </Routes> </div>

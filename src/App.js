@@ -21,27 +21,31 @@ import EmployeeBatch2 from './Components/EmployeePage/EmployeeBatch2';
 import EmployeePage from './Components/EmployeePage/EmployeePage.js';
 import { ModalComponent } from './Components/atoms/ModalComponent';
 import { useState } from 'react';
-
+import Practise from './Components/EmployeePage/Practise';
+import BasicTabs from './Components/signUpPage/SignUpNavBar';
 
 
 function App() {
-  const [show, setshow] = useState(true)
+  // const [show, setshow] = useState(true)
   return (
     
     <BrowserRouter>
-    <div className="App">
-      {/* <AdminContent/> */}
+    {/* <div className="App"> */}
+      <AdminContent/>
      {/* <AdminTable/> */}
       {/* <LoginPage/> */}
       {/* <EmployeeMainPage/> */}
-      <EmployeeBatch/>
+      {/* <EmployeeBatch/> */}
       {/* <EmployeeBatch2/> */}
       {/* <Practise/> */}
       {/* <EmployeePage/> */}
       {/* <ModalComponent show={show} /> */}
-    </div>
+      {/* <Practise/> */}
+      {/* <BasicTabs/> */}
+      {/* <BasicTabs/> */}
+    {/* </div> */}
 
-    {/* <Routes>
+    <Routes>
       <Route path="/" element={<Primary/>} />
       <Route path="/SecondaryInfo" element={<SecondaryInfo />} />
       <Route path="/EducationDetails" element={<EducationDetails />} />
@@ -50,7 +54,8 @@ function App() {
         <Route path="/TechnicalSkills" element={<TechnicalSkills />} />
        <Route path="/Experience" element={<Experience />} />
          <Route path="/Contact" element={<Contact />} />
-        </Routes> */}
+         <Route path='/LoginPage' element={<LoginPage/>}/>
+        </Routes>
     </BrowserRouter>
   );
 }

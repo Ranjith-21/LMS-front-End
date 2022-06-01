@@ -1,7 +1,11 @@
 import React, { useState } from "react";
-import {Button,Col,Container,Form,Nav,Navbar,Row,} from "react-bootstrap";
+import { Button, Col, Container, Form, Nav, Navbar, Row, } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import './SignUp.css'
+import EmployeeDropDown from './../atoms/EmployeeDropDown';
+import FormSelect from "../atoms/FormSelect";
+import FormControl from "../atoms/FormControl";
+import ButtonComp from "../atoms/ButtonComp";
 
 function AddressDetails() {
   const [addressData, setAddressData] = useState({
@@ -14,6 +18,16 @@ function AddressDetails() {
     pinCode: "",
     LandMark: "",
   });
+  const [option, setoption] = useState([
+    'Select Below','Permanant', 'Temporary', 'Office'
+  ])
+
+  const [city, setcity] = useState([
+    'Select Below','Bangalore','Hyderabad','Pune'
+  ])
+  const [state, setstate] = useState([
+    'Select Below','Karnataka','Kerala','TamilNadu'
+  ])
 
   let getAddressData = (e) => {
     setAddressData({ ...addressData, [e.target.name]: e.target.value });
@@ -70,6 +84,7 @@ function AddressDetails() {
                 className='header'
               >
                 Address Details
+                <hr size='10'/>
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
@@ -88,179 +103,22 @@ function AddressDetails() {
         </navbar>
         <Form className="  mt-3 square border border-light border-4 rounded-3 ">
           <Row className="mb-3">
-            <Form.Group
-              style={{ textAlign: "left" }}
-              as={Col}
-              controlId="formGridEmail"
-            >
-              <Form.Label
-              className="labelForm"
-              >
-                Address Type
-              </Form.Label>
-              <Form.Select
-                className="addressForm"
-                aria-label="Default select example"
-                name="AddressType"
+            <FormSelect  style={{ textAlign: "left", width: '50%' }} as={Col} label={'Address Type'}  name={"AddressType"}
                 value={addressData.AddressType}
-                onChange={getAddressData}
-              >
-                <option></option>
-                <option value="1">Permanent</option>
-                <option value="2">Temperory</option>
-                <option value="3">office</option>
-              </Form.Select>
-            </Form.Group>
-
-            <Form.Group
-              style={{ textAlign: "left" }}
-              as={Col}
-              controlId="formGridPassword"
-            >
-              <Form.Label
-                   className="labelForm"
-              >
-                Door No.
-              </Form.Label>
-              <Form.Control
-               className="addressForm"
-               
-                type="text"
-                name="DoorNumber"
-                value={addressData.DoorNumber}
-                onChange={getAddressData}
-              />
-            </Form.Group>
+                onChange={getAddressData} options={option}  />
+                <FormControl   style={{ textAlign: "left", width: '50% ' }} as={Col} label={'Door No.'}  type="text" name="DoorNumber" value={addressData.DoorNumber}  onChange={getAddressData}/>
           </Row>
           <Row className="mb-3">
-            <Form.Group
-              style={{ textAlign: "left" }}
-              as={Col}
-            //   controlId="formGridEmail"
-            >
-              <Form.Label
-                   className="labelForm"
-              >
-                Street
-              </Form.Label>
-              <Form.Control
-               className="addressForm"
-                type="text"
-                name="Street"
-                value={addressData.Street}
-                onChange={getAddressData}
-              />
-            </Form.Group>
-
-            <Form.Group
-              style={{ textAlign: "left" }}
-              as={Col}
-            //   controlId="formGridPassword"
-            >
-              <Form.Label
-                   className="labelForm"
-              >
-                Locality
-              </Form.Label>
-              <Form.Control
-               className="addressForm"
-                type="text"
-                name="Locality"
-                value={addressData.Locality}
-                onChange={getAddressData}
-              />
-            </Form.Group>
+            <FormControl style={{ textAlign: "left" }} as={Col} label={'Street'}  type="text" name="Street" value={addressData.Street} onChange={getAddressData}  />
+            <FormControl style={{ textAlign: "left" }} as={Col} label={'Locality'}  type="text" name="Locality" value={addressData.Locality} onChange={getAddressData}  />
           </Row>
           <Row className="mb-3">
-            <Form.Group
-              style={{ textAlign: "left" }}
-              as={Col}
-              controlId="formGridEmail"
-            >
-              <Form.Label
-                  className="labelForm" 
-              >
-                City
-              </Form.Label>
-              <Form.Select
-               className="addressForm"
-               
-                aria-label="Default select example"
-                name="City"
-                value={addressData.City}
-                onChange={getAddressData}
-              >
-                <option value="1">Select Below</option>
-                <option value="2">Bangalore</option>
-                <option value="4">Kolkata</option>
-                <option value="5">Bihar</option>
-                <option value="3">Bhubaneswar</option>
-              </Form.Select>
-            </Form.Group>
-
-            <Form.Group
-              style={{ textAlign: "left" }}
-              as={Col}
-              controlId="formGridEmail"
-            >
-              <Form.Label
-                  className="labelForm" 
-              >
-                State
-              </Form.Label>
-              <Form.Select
-               className="addressForm"
-               
-                aria-label="Default select example"
-                name="State"
-                value={addressData.State}
-                onChange={getAddressData}
-              >
-                <option value="1">Select Below</option>
-                <option value="2">Karnataka</option>
-                <option value="3">Odisha</option>
-                <option value="5">Chattisgadh</option>
-                <option value="4">WestBengal</option>
-              </Form.Select>
-            </Form.Group>
+            <FormSelect  style={{ textAlign: "left" }} as={Col} label={'City'}   name="City" value={addressData.City} onChange={getAddressData} options={city}  />
+            <FormSelect    style={{ textAlign: "left" }}  as={Col} label={'State'}  name="State" value={addressData.State}onChange={getAddressData} options={state}  />
           </Row>
           <Row className="mb-3">
-            <Form.Group
-              style={{ textAlign: "left" }}
-              as={Col}
-            >
-              <Form.Label
-                  className="labelForm" 
-              >
-                PIN Code
-              </Form.Label>
-              <Form.Control
-               className="addressForm"
-               
-                type="text"
-                name="pinCode"
-                Value={addressData.pinCode}
-                onChange={getAddressData}
-              />
-            </Form.Group>
-            <Form.Group
-              style={{ textAlign: "left" }}
-              as={Col}
-            >
-              <Form.Label
-                  className="labelForm" 
-              >
-                Land Mark
-              </Form.Label>
-              <Form.Control
-               className="addressForm"
-               
-                type="text"
-                name="LandMark"
-                value={addressData.LandMark}
-                onChange={getAddressData}
-              />
-            </Form.Group>
+            <FormControl style={{ textAlign: "left" }}  as={Col}   type={"text"} name={"pinCode"}  value={addressData.pinCode} onChange={getAddressData} label={'PIN Code'}/>
+            <FormControl   style={{ textAlign: "left" }} as={Col} label={'Land Mark'}  type={"text"} name={"LandMark"} value={addressData.LandMark} onChange={getAddressData}/>
           </Row>
           <Row>
             <Navbar
@@ -268,22 +126,14 @@ function AddressDetails() {
               expand="lg"
             >
               <Container fluid>
-                <Button
-                  variant="secondary"
-                  size="md"
-                  onClick={navigatePrevious}
-                >
-                  Previous
-                </Button>
+                <ButtonComp variant="secondary" size="md"  onClick={navigatePrevious} label={'Previous'} />
                 <Nav
                   className="me-auto my-2 my-lg-0"
                   style={{ maxHeight: "100px" }}
                   navbarScroll
                 ></Nav>
                 <Form className="d-flex">
-                  <Button variant="primary" size="md" onClick={ValidateData}>
-                    Next
-                  </Button>
+                <ButtonComp variant="primary" size="md"  onClick={ValidateData} label={'Next'} />
                 </Form>
               </Container>
             </Navbar>

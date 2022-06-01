@@ -9,27 +9,31 @@ import { Form } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import './EmployeePage.css'
 import { Tooltip } from 'antd';
-import { ModalComponent } from '../atoms/ModalComponent';
-const text = <span>
+// import { ModalComponent } from '../atoms/ModalComponent';
+import FormComponent from '../atoms/FormComponent';
+import ModalComponent from '../atoms/ModalComponent';
+import InputComp from '../atoms/InputComp';
+// import { FormComponent } from './../atoms/FormComponent';
+const text = <span className='emptext'>
   <tr>
-    <td style={{ padding: '8px' }}>Initial Strength</td>
-    <td>100</td>
+    <td>Initial Strength</td>
+    <td style={{color:'#5593ad'}}>100</td>
   </tr>
   <tr>
-    <td style={{ padding: '8px' }}>Dropout</td>
-    <td>10</td>
+    <td>Dropout</td>
+    <td style={{color:'#ee5074'}}>10</td>
   </tr>
   <tr>
-    <td style={{ padding: '8px' }}>Terminated</td>
-    <td>10</td>
+    <td>Terminated</td>
+    <td style={{color:'#ee5074'}}>10</td>
   </tr>
   <tr>
-    <td style={{ padding: '8px' }}>Absconding</td>
-    <td>10</td>
+    <td>Absconding</td>
+    <td style={{color:'#ee5074'}}>10</td>
   </tr>
   <tr>
-    <td style={{ padding: '8px' }}>Present Strength</td>
-    <td>70</td>
+    <td>Present Strength</td>
+    <td style={{color:'#5593ad'}}>70</td>
   </tr>
 </span>;
 
@@ -116,7 +120,7 @@ function EmployeeBatch() {
             <td>
               <Stack direction="row" spacing={1}>
                 {chips.map((val) => {
-                  return <Chip style={{ backgroundColor: '#086288', color: 'white' }} label={val} variant="outlined" onDelete={handleDelete} />
+                  return <Chip style={{ backgroundColor: '#086288', color: 'white' }} label={val} variant="outlined"  />
                 })}
 
               </Stack>
@@ -130,7 +134,7 @@ function EmployeeBatch() {
             </select></td>
             <td>
 
-              <Tooltip placement="bottom" title={text}>
+              <Tooltip placement="bottom" title={text}> 
                 <button className='btntool' >
                   <i class="fa-solid fa-triangle-exclamation" style={{ fontSize: '25px' }}></i>
                 </button>
@@ -149,13 +153,7 @@ function EmployeeBatch() {
     <ModalComponent show={showStatus} onHide={handleClose} title='Reason to Change Status' footerText='Submit' handleClose={handleClose}>
     <Modal.Body>
           <Form>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Reason</Form.Label>
-              <Form.Control as="textarea" rows={3} />
-            </Form.Group>
+          <FormComponent className={"mb-3"} controlId={"exampleForm.ControlTextarea1"} label='Reason' as={'textarea'} rows={3} />
           </Form>
         </Modal.Body>
     </ModalComponent>
@@ -164,13 +162,8 @@ function EmployeeBatch() {
 
       {/* Attendance  */}
 
-      
-      <Modal size="xl" aria-labelledby="contained-modal-title-vcenter"
-        centered show={showAttendance} onHide={handleClose1}>
-        <Modal.Header closeButton>
-          <Modal.Title style={{ color: '#94bbcb', fontSize: '15px' }} >Attendance for &#40;{date}&#41;</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+      <ModalComponent show={showAttendance} onHide={handleClose1} size='xl' title={`Attendance for (${date})`} footerText='Submit' handleClose={handleClose1} arialabelledby='contained-modal-title-vcenter'>
+      <Modal.Body>
           <Table striped>
             <thead>
               <tr>
@@ -212,12 +205,8 @@ function EmployeeBatch() {
             </tbody>
           </Table>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={handleClose1}>
-            Submit
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      </ModalComponent>
+
     </div>
   )
 }

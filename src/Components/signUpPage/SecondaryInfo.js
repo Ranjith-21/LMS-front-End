@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import {Button,Col,Form,Nav,Navbar,Row} from "react-bootstrap";
 import { useNavigate } from "react-router";
+import ButtonComp from "../atoms/ButtonComp";
+import FormControl from "../atoms/FormControl";
+import FormSelect from "../atoms/FormSelect";
 
 
 function SecondaryInfo() {
@@ -13,6 +16,10 @@ function SecondaryInfo() {
     PassportNo: "",
     MaritalStatus: "",
   });
+
+  const [martial, setmartial] = useState([
+    'Select Below', 'Married','Un-Married'
+  ])
 
   let getSecondaryData = (e) => {
     setSecondaryinfo({
@@ -64,6 +71,7 @@ function SecondaryInfo() {
               className='header'
             >
               Secondary Info
+              <hr size='10' />
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
@@ -88,166 +96,38 @@ function SecondaryInfo() {
       </navbar>
       <Form className="container fluid  mt-3 square border border-light border-4 rounded-3 ">
         <Row className="mb-3">
-          <Form.Group
-            style={{ textAlign: "left" }}
-            as={Col}
-            controlId="formGridEmail"
-          >
-            <Form.Label
-            className="labelForm"
-            >
-              PAN No.
-            </Form.Label>
-            <Form.Control
-            className="addressForm"
-              type="text"
-              name="PanNo"
-              value={secondaryData.PanNo}
-              onChange={getSecondaryData}
-            />
-          </Form.Group>
-
-          <Form.Group
-            style={{ textAlign: "left" }}
-            as={Col}
-            controlId="formGridPassword"
-          >
-            <Form.Label
-              className="labelForm"
-            >
-              Aadhar No.
-            </Form.Label>
-            <Form.Control
-              className="addressForm"
-              type="text"
-              name="Aadharno"
-              value={secondaryData.Aadharno}
-              onChange={getSecondaryData}
-            />
-          </Form.Group>
+          <FormControl  style={{ textAlign: "left" }}as={Col} label={'Pan No.'} type="text" name="PanNo" value={secondaryData.PanNo} onChange={getSecondaryData}  />
+          <FormControl style={{ textAlign: "left" }} as={Col} label={'Aadhar No.'}  type="text"  name="Aadharno" value={secondaryData.Aadharno} onChange={getSecondaryData} />
         </Row>
         <Row className="mb-3">
-          <Form.Group
-            style={{ textAlign: "left" }}
-            as={Col}
-            controlId="formGridEmail"
-          >
-            <Form.Label
-              className="labelForm"
-            >
-              Father Name
-            </Form.Label>
-            <Form.Control
-              className="addressForm"
-              type="text"
-              name="FathersName"
-              value={secondaryData.FathersName}
-              onChange={getSecondaryData}
-            />
-          </Form.Group>
-
-          <Form.Group
-            style={{ textAlign: "left" }}
-            as={Col}
-            controlId="formGridPassword"
-          >
-            <Form.Label
-             className="labelForm"
-            >
-              Mother Name
-            </Form.Label>
-            <Form.Control
-              className="addressForm"
-              type="text"
-              name="MotherName"
-              value={secondaryData.MotherName}
-              onChange={getSecondaryData}
-            />
-          </Form.Group>
+          <FormControl style={{ textAlign: "left" }} as={Col} label={'Father Name'} type="text" name="FathersName"  value={secondaryData.FathersName}   onChange={getSecondaryData} />
+         <FormControl style={{ textAlign: "left" }} as={Col} label={'Mother Name'}   type="text" name="MotherName"  value={secondaryData.MotherName} onChange={getSecondaryData} />
+         
         </Row>
         <Row className="mb-3">
-          <Form.Group
-            style={{ textAlign: "left" }}
-            as={Col}
-            controlId="formGridEmail"
-          >
-            <Form.Label
-              className="labelForm"
-            >
-              Spouse Name
-            </Form.Label>
-            <Form.Control
-               className="addressForm"
-              type="text"
-              name="SpouseName"
-              value={secondaryData.SpouseName}
-              onChange={getSecondaryData}
-            />
-          </Form.Group>
+          <FormControl  style={{ textAlign: "left" }}
+            as={Col} label={'Spouse Name'} type="text"
+            name="SpouseName"
+            value={secondaryData.SpouseName}
+            onChange={getSecondaryData} />
 
-          <Form.Group
-            style={{ textAlign: "left" }}
-            as={Col}
-            controlId="formGridPassword"
-          >
-            <Form.Label
-              className="labelForm"
-            >
-              Passport No.
-            </Form.Label>
-            <Form.Control
-               className="addressForm"
-              type="text"
-              name="PassportNo"
-              value={secondaryData.PassportNo}
-              onChange={getSecondaryData}
-            />
-          </Form.Group>
+
+          <FormControl  style={{ textAlign: "left" }} as={Col} label={'Passport No.'}  type="text" name="PassportNo" value={secondaryData.PassportNo}  onChange={getSecondaryData}  />
         </Row>
         <Row className="mb-3">
-          <Form.Group
-            style={{ textAlign: "left" }}
-            as={Col}
-            controlId="formGridEmail"
-          >
-            <Form.Label
-              className="labelForm"
-            >
-              Marital Status
-            </Form.Label>
-            <Form.Select
-              className="addressForm"
-              style={{width:'49%'}}
-              aria-label="Default select example"
-              name="MaritalStatus"
-              value={secondaryData.MaritalStatus}
-              onChange={getSecondaryData}
-            >
-              <option>Select Below</option>
-              <option value="1">Single</option>
-              <option value="2">Married</option>
-              <option value="3">Divorced</option>
-            </Form.Select>
-          </Form.Group>
+          <FormSelect style={{ textAlign: "left" }} as={Col} label={'Martial Status'} options={martial}   name="MaritalStatus"   value={secondaryData.MaritalStatus}  onChange={getSecondaryData} />
         </Row>
         <Row>
-          <Navbar
-            className="container fluid  col-8 mt-5 square border border-light border-4 rounded-3 "
-            expand="lg"
-          >
+          <Navbar className="container fluid  col-8 mt-5 square border border-light border-4 rounded-3 " expand="lg">
             {/* <Container fluid> */}
-            <Button variant="secondary" size="md" onClick={navigatePrevious}>
-              Previous
-            </Button>
+            <ButtonComp variant="secondary" size="md" onClick={navigatePrevious} label={'Previous'} />
             <Nav
               className="me-auto my-2 my-lg-0"
               style={{ maxHeight: "100px" }}
               navbarScroll
             ></Nav>
             <Form className="d-flex">
-              <Button variant="primary" size="md" onClick={ValidateFunction}>
-                Next
-              </Button>
+              <ButtonComp variant="primary" size="md" onClick={ValidateFunction} label={'Next'} />
             </Form>
             {/* </Container> */}
           </Navbar>

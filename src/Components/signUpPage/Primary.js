@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import {Button,Col,Form,Nav,Navbar,Row,} from "react-bootstrap";
 import { useNavigate } from "react-router";
+import ButtonComp from "../atoms/ButtonComp";
+import FormControl from "../atoms/FormControl";
+import FormSelect from "../atoms/FormSelect";
+
 
 function Primary() {
   const [primaryData, setPrimaryData] = useState({
@@ -15,6 +19,27 @@ function Primary() {
     Nationality: "",
     EmpolyeeStatus: "",
   });
+
+  const [designation, setdesignation] = useState(
+    [
+      'Select Below','Admin','Mentor','Trainee/Employee'
+    ]
+  )
+
+    const [gender, setgender] = useState([
+      'Select Below','Male','Female','Others'
+    ])
+
+    const [Nationality, setNationality] = useState([
+      'Select Below','Indian','NRI'
+    ])
+
+    const [eStatus, seteStatus] = useState(
+      [
+        'Select Below', 'Applied','Apponited','Declined'
+      ]
+    )
+
   let getPrimaryData = (e) => {
     setPrimaryData({
       ...primaryData,
@@ -60,6 +85,7 @@ function Primary() {
               className='header'
             >
               Primary Info
+              <hr size='10' />
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
@@ -87,218 +113,24 @@ function Primary() {
       </navbar>
       <Form className="container fluid  mt-3 square border border-light border-4 rounded-3 ">
         <Row className="mb-3">
-          <Form.Group
-            style={{ textAlign: "left" }}
-            as={Col}
-            controlId="formGridEmail"
-          >
-            <Form.Label
-            className="labelForm"
-            >
-              Empolyee ID
-            </Form.Label>
-            <Form.Control
-            className="addressForm"
-              type="text"
-              name="EmpolyeeId"
-              value={primaryData.EmpolyeeId}
-              onChange={getPrimaryData}
-            />
-          </Form.Group>
-
-          <Form.Group
-            style={{ textAlign: "left" }}
-            as={Col}
-            controlId="formGridPassword"
-          >
-            <Form.Label
-             className="labelForm"
-            >
-              Empolyee Name
-            </Form.Label>
-            <Form.Control
-              className="addressForm"
-              type="text"
-              name="EmpolyeeName"
-              value={primaryData.EmpolyeeName}
-              onChange={getPrimaryData}
-            />
-          </Form.Group>
+          <FormControl  style={{ textAlign: "left" }} as={Col} label={'Employee ID'}  type="text"  name="EmpolyeeId"  value={primaryData.EmpolyeeId}  onChange={getPrimaryData} />
+          <FormControl style={{ textAlign: "left" }} as={Col} label={'Employee Name'}  type="text"  name="EmpolyeeName" value={primaryData.EmpolyeeName}  onChange={getPrimaryData}  />
         </Row>
         <Row className="mb-3">
-          <Form.Group
-            style={{ textAlign: "left" }}
-            as={Col}
-            controlId="formGridEmail"
-          >
-            <Form.Label
-              className="labelForm"
-            >
-              Date of Joining
-            </Form.Label>
-            <Form.Control
-             className="addressForm"
-              type="date"
-              name="DateOfJoining"
-              value={primaryData.DateOfJoining}
-              onChange={getPrimaryData}
-            />
-          </Form.Group>
-
-          <Form.Group
-            style={{ textAlign: "left" }}
-            as={Col}
-            controlId="formGridPassword"
-          >
-            <Form.Label
-              className="labelForm"
-            >
-              Date of Birth
-            </Form.Label>
-            <Form.Control
-             className="addressForm"
-              type="date"
-              name="DateOfBirth"
-              value={primaryData.DateOfBirth}
-              onChange={getPrimaryData}
-            />
-          </Form.Group>
+          <FormControl style={{ textAlign: "left" }} as={Col} label={'Date of Joining'}   type="date"  name="DateOfJoining" value={primaryData.DateOfJoining}  onChange={getPrimaryData} />
+          <FormControl style={{ textAlign: "left" }} as={Col} label={'Date of Birth'}   type="date"   name="DateOfBirth" value={primaryData.DateOfBirth}  onChange={getPrimaryData} />
         </Row>
         <Row className="mb-3">
-          <Form.Group
-            style={{ textAlign: "left" }}
-            as={Col}
-            controlId="formGridEmail"
-          >
-            <Form.Label
-              className="labelForm"
-            >
-              E-mail ID
-            </Form.Label>
-            <Form.Control
-              className="addressForm"
-              type="email"
-              name="EmailId"
-              value={primaryData.EmailId}
-              onChange={getPrimaryData}
-            />
-          </Form.Group>
-
-          <Form.Group
-            style={{ textAlign: "left" }}
-            as={Col}
-            controlId="formGridPassword"
-          >
-            <Form.Label
-              className="labelForm"
-            >
-              Blood Group
-            </Form.Label>
-            <Form.Control
-              className="addressForm"
-              type="text"
-              name="BloodGroup"
-              value={primaryData.BloodGroup}
-              onChange={getPrimaryData}
-            />
-          </Form.Group>
+          <FormControl style={{ textAlign: "left" }} as={Col} label={'E-mail ID'}  type="email" name="EmailId"  value={primaryData.EmailId}  onChange={getPrimaryData}  />
+        <FormControl style={{ textAlign: "left" }} as={Col} label={'Blood Group'}  type="text" name="BloodGroup" value={primaryData.BloodGroup}  onChange={getPrimaryData} />
         </Row>
         <Row className="mb-3">
-          <Form.Group
-            style={{ textAlign: "left" }}
-            as={Col}
-            controlId="formGridEmail"
-          >
-            <Form.Label
-              className="labelForm"
-            >
-              Designation
-            </Form.Label>
-            <Form.Select
-              className="addressForm"
-              aria-label="Default select example"
-              name="Designation"
-              value={primaryData.Designation}
-              onChange={getPrimaryData}
-            >
-              <option>Select Below</option>
-              <option value="1">Admin</option>
-              <option value="2">Mentor</option>
-              <option value="3">Empolyee/Trainee</option>
-            </Form.Select>
-          </Form.Group>
-
-          <Form.Group
-            style={{ textAlign: "left" }}
-            as={Col}
-            controlId="formGridEmail"
-          >
-            <Form.Label
-              className="labelForm"
-            >
-              Gender
-            </Form.Label>
-            <Form.Select
-              className="addressForm"
-              aria-label="Default select example"
-              name="Gender"
-              value={primaryData.Gender}
-              onChange={getPrimaryData}
-            >
-              <option>Select Below</option>
-              <option value="1">Male</option>
-              <option value="2">Female</option>
-              <option value="3">TransGender</option>
-            </Form.Select>
-          </Form.Group>
+            <FormSelect style={{ textAlign: "left" }} as={Col} label={'Designation'}   name="Designation" value={primaryData.Designation}  onChange={getPrimaryData} options={designation}  />
+            <FormSelect  style={{ textAlign: "left" }}as={Col} label={'Gender'} name="Gender"   value={primaryData.Gender}  onChange={getPrimaryData} options={gender}  />
         </Row>
         <Row className="mb-3">
-          <Form.Group
-            style={{ textAlign: "left" }}
-            as={Col}
-            controlId="formGridEmail"
-          >
-            <Form.Label
-              className="labelForm"
-            >
-              Nationality
-            </Form.Label>
-            <Form.Select
-              className="addressForm"
-              aria-label="Default select example"
-              name="Nationality"
-              value={primaryData.Nationality}
-              onChange={getPrimaryData}
-            >
-              <option>Select Below</option>
-              <option value="1">Indian</option>
-              <option value="2">NRI</option>
-              <option value="3">....!</option>
-            </Form.Select>
-          </Form.Group>
-          <Form.Group
-            style={{ textAlign: "left" }}
-            as={Col}
-            controlId="formGridEmail"
-          >
-            <Form.Label
-              className="labelForm"
-            >
-              Empolyee Status
-            </Form.Label>
-            <Form.Select
-            className="addressForm"
-              aria-label="Default select example"
-              name="EmpolyeeStatus"
-              value={primaryData.EmpolyeeStatus}
-              onChange={getPrimaryData}
-            >
-              <option>Select Below</option>
-              <option value="1">Applied</option>
-              <option value="2">Appointed</option>
-              <option value="3">Declined</option>
-            </Form.Select>
-          </Form.Group>
+          <FormSelect style={{ textAlign: "left" }}as={Col} label={'Nationality'}  name="Nationality"  value={primaryData.Nationality}  onChange={getPrimaryData} options={Nationality} />
+          <FormSelect   style={{ textAlign: "left" }}  as={Col} label={'Employee Status'} options={eStatus}   name="EmpolyeeStatus" value={primaryData.EmpolyeeStatus} onChange={getPrimaryData}/>
         </Row>
         <Row>
           <Navbar
@@ -315,9 +147,7 @@ function Primary() {
               navbarScroll
             ></Nav>
             <Form className="d-flex">
-              <Button variant="primary" size="md" onClick={ValidateFunction}>
-                Next
-              </Button>
+              <ButtonComp variant="primary" size="md" onClick={ValidateFunction} label={'Next'}/>
             </Form>
             {/* </Container> */}
           </Navbar>

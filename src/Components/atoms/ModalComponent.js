@@ -1,24 +1,25 @@
 import React from 'react'
 import { Button, Modal } from 'react-bootstrap'
 
-export const ModalComponent = (
+function ModalComponent(
+  {
+    children,
+    show=()=>
     {
-        children,
-        show=()=>
-        {
 
-        },
-        onHide={},
-        className='',
-        title='',
-        footerText='',
-        size='',
-        handleClose=()=>{}
-    }
-) => {
+    },
+    arialabelledby='',
+    onHide={},
+    className='',
+    title='',
+    footerText='',
+    size='',
+    handleClose=()=>{}
+}
+) {
   return (
     <div>
-        <Modal size={size} show={show} onHide={onHide} className={className}>
+<Modal size={size} show={show} onHide={onHide} className={className} aria-labelledby={arialabelledby} centered >
         <Modal.Header closeButton>
           <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
@@ -36,3 +37,5 @@ export const ModalComponent = (
     </div>
   )
 }
+
+export default ModalComponent

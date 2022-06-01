@@ -7,27 +7,34 @@ import { Modal } from 'react-bootstrap';
 import { Form } from 'react-bootstrap';
 import { useState } from 'react';
 import { Tooltip } from 'antd';
+// import { ModalComponent } from '../atoms/ModalComponent';
+import FormComponent from '../atoms/FormComponent';
+import ModalComponent from '../atoms/ModalComponent';
+import DropDown from '../atoms/DropDown';
+import InputComp from '../atoms/InputComp';
+// import { FormComponent } from '../atoms/FormComponent';
+
 
 const text = <span>
   <tr>
     <td style={{padding:'8px'}}>Mock 1</td>
-    <td>Excellent</td>
+    <td style={{color:'#24b83c'}}>Excellent</td>
   </tr>
   <tr>
     <td style={{padding:'8px'}}>Mock 2</td>
-    <td>Good</td>
+    <td style={{color:'#5b99eb'}}>Good</td>
   </tr>
   <tr>
     <td style={{padding:'8px'}}>Mock 3</td>
-    <td>Above Average</td>
+    <td style={{color:'#dda23c'}}>Above Average</td>
   </tr>
   <tr>
     <td style={{padding:'8px'}}>Mock 4</td>
-    <td>Average</td>
+    <td style={{color:'#e0be16'}}>Average</td>
   </tr>
   <tr>
     <td style={{padding:'8px'}}>Mock 5</td>
-    <td>Below Average</td>
+    <td style={{color:'#ec3e66'}}>Below Average</td>
   </tr>
 </span>;
 
@@ -35,6 +42,11 @@ function EmployeeBatch2() {
   const [showStatus, setshowStatus] = useState(false)
   const [showMock, setshowMock] = useState(false)
   const [showRating, setshowRating] = useState(false)
+  const [batchid, setbatchid] = useState([1,2,3,4])
+  const [technoData, settechnoData] = useState([
+    "Java",'JavaScript','React'
+  ])
+  const [panel, setpanel] = useState([1,2,3,4])
 
   let openRatings = () => {
     setshowRating(true)
@@ -145,97 +157,33 @@ function EmployeeBatch2() {
       </Table>
 
       {/* Reason to Change status */}
-
-      <Modal show={showStatus} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Reason to Change Status</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+      <ModalComponent show={showStatus} onHide={handleClose} title='Reason to Change Status' footerText='Submit'>
+      <Modal.Body>
           <Form>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Reason</Form.Label>
-              <Form.Control as="textarea" rows={3} />
-            </Form.Group>
+            <FormComponent className="mb-3" controlId="exampleForm.ControlTextarea1" as="textarea" rows={3} label="Reason"/>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={handleClose}>
-            Submit
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      </ModalComponent>
+
 
       {/* Add Mock Modal */}
-
-      <Modal show={showMock} onHide={handleClose1}>
-        <Modal.Header closeButton>
-          <Modal.Title>Add Mock</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form.Label>Batch ID</Form.Label>
-          <Form.Select
-            aria-label="Default select example"
-          >
-            <option></option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </Form.Select>
+      <ModalComponent show={showMock} onHide={handleClose1} title='Add Mock' footerText='create'>
+      <Modal.Body> 
           <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Mock No</Form.Label>
-              <Form.Control
-                type="number"
-              />
-            </Form.Group>
-
-
-            <Form.Label>Technologies</Form.Label>
-            <Form.Select
-              aria-label="Default select example"
-            >
-              <option></option>
-              <option value="1">React</option>
-              <option value="2">JavaScript</option>
-              <option value="3">Java</option>
-            </Form.Select>
-
-
-            <Form.Label>Panel</Form.Label>
-            <Form.Select
-              aria-label="Default select example"
-            >
-              <option></option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-            </Form.Select>
-
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Date & Time</Form.Label>
-              <Form.Control type='datetime-local' />
-            </Form.Group>
+          <DropDown label={'Batch ID'} option={batchid} />
+          <InputComp  label={'Mock No'} className={'form-control mb-3'} type={'number'} />
+            <DropDown label={'Technologies'} option={technoData} />
+            <DropDown label={'Panel'} option={panel} />
+            <InputComp  label={'Date & Time'} className={'form-control mb-3'} type={'datetime-local'} />
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={handleClose1}>
-            Create
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      </ModalComponent>
 
+  
       {/* Give Ratings  */}
-      <Modal show={showRating} size='lg' onHide={handleClose2}>
-        <Modal.Header closeButton>
-          <Modal.Title>Mock Ratings</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+
+      <ModalComponent show={showRating} size='lg' onHide={handleClose2} title='Mock Ratings' footerText='Submit'  >
+      <Modal.Body>
           <Form>
             <Form.Group className='d-flex'>
               <Form.Group style={{ width: '50%' }} >
@@ -249,6 +197,7 @@ function EmployeeBatch2() {
                 </Form.Select>
               </Form.Group>
 
+{/* <FormComponent style={{ width: '50%' }} className="mb-3 mx-2" controlId="exampleForm.ControlInput1" label='Mock Taken By'  /> */}
               <Form.Group style={{ width: '50%' }} className="mb-3 mx-2" controlId="exampleForm.ControlInput1">
                 <Form.Label>Mock Taken By</Form.Label>
                 <Form.Control
@@ -302,22 +251,10 @@ function EmployeeBatch2() {
               </Form.Group>
             </FormGroup>
 
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Reason</Form.Label>
-              <Form.Control as="textarea" rows={3} />
-            </Form.Group>
+            <FormComponent className={"mb-3"} controlId={"exampleForm.ControlTextarea1"} label='Reason' as={'textarea'} rows={3} />
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={handleClose2}>
-            Submit
-          </Button>
-        </Modal.Footer>
-      </Modal>
-
+      </ModalComponent>
     </div>
   )
 }

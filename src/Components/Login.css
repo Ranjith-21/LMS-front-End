@@ -23,21 +23,23 @@
 .childImage
 {
     height:505px;
-    border-radius:5px 0px 0px 5px
+    border-radius:5px 0px 0px 5px;
 }
 
 .childContent
 {
     overflow:hidden;
     background-color:#000000A2;
-    border-radius:0px 5px 5px 0px
+    border-radius:0px 5px 5px 0px;
+    text-align: center;
 }
 
 .contentText
 {
     color:#FFAA17;
     font-size:30px;
-    font-family:Abril Fatface
+    font-family:Abril Fatface;
+    /* margin-left: 125px; */
 }
 
 .contentForm
@@ -68,7 +70,8 @@
     border:none;
     background-color:#FFAA17;
     border-radius:3px;
-    color:#FFFFFF
+    color:#FFFFFF;
+    /* margin-left: 50px; */
 }
 
 .btnCancel

@@ -4,9 +4,14 @@ import { ButtonGroup, Form, Row } from 'react-bootstrap'
 import './Login.css' 
 
 function LoginPage() {
+    
+
+
+
+
     return (
         <div className='Main_div'  >
-            <div className='col-lg-8 col-md-8 col-sm-8 col-xs-8 gx-0 childDiv '  >
+            <div className='col-lg-8 col-md-8 col-sm-8 col-xs-8 gx-0 childDiv'  >
                 <Row>
                     <img className='childImage  col-lg-8 col-md-8 col-sm-8  col-xs-8 gx-0' src={require('./../Assests/image.png')} alt=''  />
                     <div  className='childContent  col-lg-4 col-sm-8 col-md-8 col-xs-8 gx-0 '   >

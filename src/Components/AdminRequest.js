@@ -1,33 +1,34 @@
 // import React, { useState } from 'react'
-import { Button, Container, Navbar, Table } from 'react-bootstrap'
+import { Container, Navbar, Table } from 'react-bootstrap'
 import './AdminContent.css'
 import { Modal } from 'react-bootstrap';
 import { Form } from 'react-bootstrap';
 import { useState } from 'react';
+// import { ModalComponent } from './atoms/ModalComponent';
+import FormComponent from './atoms/FormComponent';
+import ModalComponent from './atoms/ModalComponent';
+// import { FormComponent } from './atoms/FormComponent';
 
 
 function AdminRequest() {
-const [showReason, setshowReason] = useState(false)
+  const [showReason, setshowReason] = useState(false)
 
-let openShowReason=()=>
-{
-  setshowReason(true)
-}
+  let openShowReason = () => {
+    setshowReason(true)
+  }
 
-let closeReason=()=>
-{
-  setshowReason(false)
-}
+  let closeReason = () => {
+    setshowReason(false)
+  }
 
-let handleClose=()=>
-{
-  closeReason()
-}
+  let handleClose = () => {
+    closeReason()
+  }
 
 
   return (
     <div>
-       <Navbar style={{ height: '60px' }} >
+      <Navbar style={{ height: '60px' }} >
         <Container fluid>
           <Navbar.Brand href="#home" style={{ color: 'orange' }}>Request List</Navbar.Brand>
           <Navbar.Toggle />
@@ -43,7 +44,7 @@ let handleClose=()=>
         </Container>
       </Navbar>
       <Table>
-        <thead style={{backgroundColor:'#e9eef7'}}>
+        <thead style={{ backgroundColor: '#e9eef7' }}>
           <tr>
             <th><input type='checkbox' /></th>
             <th>No</th>
@@ -72,27 +73,13 @@ let handleClose=()=>
       </Table>
 
 
-      <Modal show={showReason} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Reason for Rejection</Modal.Title>
-        </Modal.Header>
+      <ModalComponent show={showReason} onHide={handleClose} title={'Reason For Rejection'} footerText={'Submit'}>
         <Modal.Body>
           <Form>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Reason</Form.Label>
-              <Form.Control as="textarea" rows={3} />
-            </Form.Group>
+            <FormComponent label={'Reason'} type={'text'} placeholder={'Enter Reason'} className={"mb-3"} controlId={"exampleForm.ControlTextarea1"} as={"textarea"} rows={3} />
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={handleClose}>
-            Submit
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      </ModalComponent>
     </div>
   )
 }

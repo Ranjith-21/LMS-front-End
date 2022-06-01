@@ -1,8 +1,21 @@
 import { useState } from "react";
 import {Button,Col,Form,Nav,Navbar,Row,} from "react-bootstrap";
 import { useNavigate } from 'react-router';
+import FormSelect from './../atoms/FormSelect';
+import './SignUp.css'
+import FormControl from './../atoms/FormControl';
+import ButtonComp from "../atoms/ButtonComp";
 
 function EducationDetails() {
+  const [eduType, seteduType] = useState(
+    [
+      'Select Below','Masters(M..tech)','Bachelor(B.E)','Post Graduate'
+    ]
+  )
+const [state, setstate] = useState([
+  'Select Below','Karnataka','Kerala','TamilNadu'
+])
+
   const [educationData, setEducationData] = useState({
     EducationType: "",
     YearOfpassing: "",
@@ -66,6 +79,7 @@ function EducationDetails() {
                 className='header'
               >
                 Education Details
+                <hr size='10' />
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
@@ -87,177 +101,35 @@ function EducationDetails() {
         </navbar>
         <Form className="container fluid  mt-3 square border border-light border-4 rounded-3 ">
           <Row className="mb-3">
-            <Form.Group
-              style={{ textAlign: "left" }}
-              as={Col}
-              controlId="formGridEmail"
-            >
-              <Form.Label
-               className="labelForm"
-              >
-                Education Type
-              </Form.Label>
-              <Form.Select
-              className="addressForm"
-                aria-label="Default select example"
-                name="EducationType"
-                value={educationData.EducationType}
-                onChange={getEducationData}
-              >
-                <option></option>
-                <option value="1">Masters(M..tech)</option>
-                <option value="2">Bachelor(B.E)</option>
-                <option value="3">Post Graduate</option>
-              </Form.Select>
-            </Form.Group>
-
-            <Form.Group
-              style={{ textAlign: "left" }}
-              as={Col}
-              controlId="formGridPassword"
-            >
-              <Form.Label
-                className="labelForm"
-              >
-                Year Of Passing
-              </Form.Label>
-              <Form.Control
-               className="addressForm"
-                type="text"
-                name="YearOfpassing"
-                value={educationData.YearOfpassing}
-                onChange={getEducationData}
-              />
-            </Form.Group>
+            <FormSelect style={{ textAlign: "left" }} as={Col} label={'Education Type'} name="EducationType" value={educationData.EducationType} onChange={getEducationData}  options={eduType}  />
+            <FormControl style={{ textAlign: "left" }} as={Col} label={'Year Of Passing'} type={"text"} name={"YearOfpassing"}  value={educationData.YearOfpassing}   onChange={getEducationData}  />
           </Row>
           <Row className="mb-3">
-            <Form.Group
-              style={{ textAlign: "left" }}
-              as={Col}
-              //   controlId="formGridEmail"
-            >
-              <Form.Label
-                className="labelForm"
-              >
-                Percentage(%)
-              </Form.Label>
-              <Form.Control
-                 className="addressForm"
-                type="text"
-                name="PerCenTage"
-                value={educationData.PerCenTage}
-                onChange={getEducationData}
-              />
-            </Form.Group>
-
-            <Form.Group
-              style={{ textAlign: "left" }}
-              as={Col}
-              //   controlId="formGridPassword"
-            >
-              <Form.Label
-                 className="labelForm"
-              >
-                University Name
-              </Form.Label>
-              <Form.Control
-                className="addressForm"
-                type="text"
-                name="UnivercityName"
-                value={educationData.UnivercityName}
-                onChange={getEducationData}
-              />
-            </Form.Group>
+            <FormControl  style={{ textAlign: "left" }}as={Col} label={'Percentage (%)'} type="text"name="PerCenTage"  value={educationData.PerCenTage} onChange={getEducationData} />
+            <FormControl style={{ textAlign: "left" }} as={Col} label={'University Name'}  type="text" name="UnivercityName" value={educationData.UnivercityName} onChange={getEducationData}  />
           </Row>
           <Row className="mb-3">
-            <Form.Group
-              style={{ textAlign: "left" }}
-              as={Col}
-              controlId="formGridEmail"
-            >
-              <Form.Label
-                className="labelForm"
-              >
-                Institute Name
-              </Form.Label>
-              <Form.Control
-                className="addressForm"
-                type="text"
-                name="InstituteName"
-                value={educationData.InstituteName}
-                onChange={getEducationData}
-              />
-            </Form.Group>
-
-            <Form.Group
-              style={{ textAlign: "left" }}
-              as={Col}
-              controlId="formGridPassword"
-            >
-              <Form.Label
-                className="labelForm"
-              >
-                Specialization
-              </Form.Label>
-              <Form.Control
-                className="addressForm"
-                type="text"
-                name="Specilization"
-                value={educationData.Specilization}
-                onChange={getEducationData}
-              />
-            </Form.Group>
+            <FormControl style={{ textAlign: "left" }} as={Col} label={'Institue Name' }  type="text" name="InstituteName"  value={educationData.InstituteName}   onChange={getEducationData} />
+            <FormControl style={{ textAlign: "left" }} as={Col} label={'Specializataion'}   type="text" name="Specilization" value={educationData.Specilization}   onChange={getEducationData} />
           </Row>
           <Row className="mb-3">
-            <Form.Group
-              style={{ textAlign: "left" }}
-              as={Col}
-              controlId="formGridEmail"
-            >
-              <Form.Label
-                 className="labelForm"
-              >
-                State
-              </Form.Label>
-              <Form.Select
-                 style={{width: '49%',
-                  height: '45px',
-                  fontSize:' 20px'}}
-                aria-label="Default select example"
-                name="State"
-                value={educationData.State}
-                onChange={getEducationData}
-              >
-                <option value="1">Select Below</option>
-                <option value="2">Karnataka</option>
-                <option value="4">WestBengal</option>
-                <option value="5">Chattisgadh</option>
-                <option value="3">Odisha</option>
-              </Form.Select>
-            </Form.Group>
+            <FormSelect style={{ textAlign: "left" }}  as={Col} label={'State'} name="State" value={educationData.State}  onChange={getEducationData} options={state}   />
           </Row>
           <Row>
           <p style={{ textAlign:'end',cursor:'pointer' }} >
           <i class="fa-solid fa-plus"></i>
           <b> Add</b>
             </p>
-            <Navbar
-              className="container fluid  col-8 mt-5 square border border-light border-4 rounded-3 "
-              expand="lg"
-            >
+            <Navbar className="container fluid  col-8 mt-5 square border border-light border-4 rounded-3 " expand="lg">
               {/* <Container fluid> */}
-              <Button variant="secondary" size="md" onClick={navigatePrevious}>
-                Previous
-              </Button>
+              <ButtonComp variant="secondary" size="md" onClick={navigatePrevious} label={'Previous'} />
               <Nav
                 className="me-auto my-2 my-lg-0"
                 style={{ maxHeight: "100px" }}
                 navbarScroll
               ></Nav>
               <Form className="d-flex">
-                <Button variant="primary" size="md" onClick={ValidateFunction}>
-                  Next
-                </Button>
+                <ButtonComp variant="primary" size="md" onClick={ValidateFunction}  label={'Next'}/>
               </Form>
               {/* </Container> */}
             </Navbar>
