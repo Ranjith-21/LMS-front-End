@@ -23,6 +23,7 @@ import { ModalComponent } from './Components/atoms/ModalComponent';
 import { useState } from 'react';
 import Practise from './Components/EmployeePage/Practise';
 import BasicTabs from './Components/signUpPage/SignUpNavBar';
+import DataStore from './Components/DataStore';
 
 
 function App() {
@@ -30,10 +31,11 @@ function App() {
   return (
     
     <BrowserRouter>
-    {/* <div className="App"> */}
+    {/* <div className="App"> */} 
       <AdminContent/>
      {/* <AdminTable/> */}
       {/* <LoginPage/> */}
+      {/* <DataStore/> */}
       {/* <EmployeeMainPage/> */}
       {/* <EmployeeBatch/> */}
       {/* <EmployeeBatch2/> */}
@@ -45,7 +47,7 @@ function App() {
       {/* <BasicTabs/> */}
     {/* </div> */}
 
-    <Routes>
+    {/* <Routes>
       <Route path="/" element={<Primary/>} />
       <Route path="/SecondaryInfo" element={<SecondaryInfo />} />
       <Route path="/EducationDetails" element={<EducationDetails />} />
@@ -55,7 +57,7 @@ function App() {
        <Route path="/Experience" element={<Experience />} />
          <Route path="/Contact" element={<Contact />} />
          <Route path='/LoginPage' element={<LoginPage/>}/>
-        </Routes>
+        </Routes> */}
     </BrowserRouter>
   );
 }

@@ -13,12 +13,14 @@ function AdminContent() {
 const [isBatch, setisBatch] = useState(false)
 const [isMentor, setisMentor] = useState(false)
 const [isSignup, setisSignup] = useState(false)
+const [page, setPage] = useState("Batch")
 
 let changeBatchImage=()=>
 {
   if(isBatch===false)
   {
     setisBatch(true)
+    setPage("Batch")
     if(isMentor || isSignup)
     {
       setisMentor(false)
@@ -30,6 +32,7 @@ let changeBatchImage=()=>
 let changeMentorImage=()=>
 {
   setisMentor(true)
+  setPage("Mentor")
   if(isBatch || isSignup)
   {
     setisBatch(false)
@@ -40,15 +43,13 @@ let changeMentorImage=()=>
 let changeSignupImage=()=>
 {
   setisSignup(true)
+  setPage("Request")
   if(isBatch || isMentor)
   {
     setisBatch(false)
     setisMentor(false)
   }
 }
-
-
-
   return (
     <div >
       <Navbar className='navBar'>
@@ -119,9 +120,6 @@ let changeSignupImage=()=>
           </Link>
           }
 
-
-
-      
         </div>
         {/* <div className='col-lg-1 col-md-1 col-sm-1' style={{width:'5px'}} ></div> */}
         <Breadcrumb className='adminBread'>
@@ -135,11 +133,10 @@ let changeSignupImage=()=>
           </Breadcrumb.Item>
         </Breadcrumb>
         <div className=' adminRoutes col-lg-10 col-md-10 col-sm-10 col-xs-10' >
-          <Routes>
-          <Route path='/Admin/Batch' index element={<AdminBatch />} />
-          <Route path='/Admin/Mentor' element={<AdminMentor />} />
-          <Route path='/Admin/Request' element={<AdminRequest />} />
-        </Routes> </div>
+          {page==="Batch" ? <AdminBatch /> : ''}
+          {page==="Mentor" ? <AdminMentor /> : ''}
+          {page==="Request" ? <AdminRequest /> : ''}
+        </div>
       </Row>
 
     </div>
