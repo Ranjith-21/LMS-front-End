@@ -60,7 +60,7 @@ function AdminMentor() {
   //To Edit Mentor Data
   let openEditMentor = (i) => {
     console.log(i);
-   setAdminMentorData({...getdataFromLocalStorage[i]})
+   setAdminMentorData({...data[i]})
     setRowNo(i)
    setshowEditMentor(true)
   }
@@ -70,13 +70,17 @@ function AdminMentor() {
     let editDataCopy=[...data]
     editDataCopy.splice(rowNo,1,adminMentorData)
     setdata(editDataCopy)
+    localStorage.setItem('AddMentorData',JSON.stringify(editDataCopy))
     handleCloseEdit()
   }
   
 //To Delete Mentor Data
-let deleteMentorData=()=>
+let deleteMentor=(i)=>
 {
-  
+  const deleteDataCopy=[...data]
+  deleteDataCopy.splice(i,1)
+  setdata(deleteDataCopy)
+  localStorage.setItem('AddMentorData',JSON.stringify(data))
 }
 
   let closeEditMentor = () => setshowEditMentor(false)
@@ -91,7 +95,7 @@ let deleteMentorData=()=>
 
   
 
-let getdataFromLocalStorage=JSON.parse(localStorage.getItem('AddMentorData'))
+// let getdataFromLocalStorage=JSON.parse(localStorage.getItem('AddMentorData'))
 
   const [chips] = useState(["react", 'java', 'python'])
  
@@ -142,7 +146,10 @@ let getdataFromLocalStorage=JSON.parse(localStorage.getItem('AddMentorData'))
            <td><button style={{ border: 'none', backgroundColor: 'white' }} onClick={()=>
           {
             openEditMentor(ind)
-          }} ><i class="fa-solid fa-pen"></i></button> &nbsp;  <button style={{ border: 'none', backgroundColor: 'white' }} onClick={deleteMentorData} ><i class="fa-solid fa-trash-can"></i></button></td>
+          }} ><i class="fa-solid fa-pen"></i></button> &nbsp;  <button style={{ border: 'none', backgroundColor: 'white' }} onClick={()=>
+          {
+            deleteMentor(ind)
+          }} ><i class="fa-solid fa-trash-can"></i></button></td>
          </tr>
        })}
        

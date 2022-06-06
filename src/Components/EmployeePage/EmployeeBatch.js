@@ -43,31 +43,12 @@ function EmployeeBatch({setPage}) {
   let date = new Date()
   date = date.toLocaleDateString()
 
-  let openStatus = () => {
-    setshowStatus(true)
-  }
-
-  let closeStatus = () => {
-    setshowStatus(false)
-  }
-
-  let handleClose = () => {
-    closeStatus()
-  }
-
-  let openAttendance = () => {
-    setshowAttendance(true)
-  }
-
-  let closeAttendance = () => {
-    setshowAttendance(false)
-  }
-
-  let handleClose1 = () => {
-    closeAttendance()
-  }
-
-
+  let openStatus = () => setshowStatus(true)
+  let closeStatus = () => setshowStatus(false)
+  let handleClose = () => closeStatus()
+  let openAttendance = () => setshowAttendance(true)
+  let closeAttendance = () => setshowAttendance(false)
+  let handleClose1 = () => closeAttendance()
 
   const [chips] = useState(["react", 'java', 'python'])
   const handleDelete = () => {

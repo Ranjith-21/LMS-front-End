@@ -81,28 +81,48 @@ function AdminBatch() {
 
 //To Edit Data
 
-  let openEditBatch = (i) => 
-  { 
-    console.log(dataFromLocalStorage[i]);
-    setbatchData({...dataFromLocalStorage[i]})
+  // let openEditBatch = (i) => 
+  // { 
+  //   console.log(dataFromLocalStorage[i]);
+  //   setbatchData({...dataFromLocalStorage[i]})
+  //   setrowNo(i)
+  //   setshowEditBatch(true)
+  // }
+
+  // let saveEditData=()=>
+  // {
+  //   let editDataCopy=[...data]
+  //   editDataCopy.splice(rowNo,1,batchData)
+  //   console.log(editDataCopy);
+  //   setdata(editDataCopy)
+  //   // localStorage.setItem('AdminBatchData',JSON.stringify(data))
+  //   handleCloseEdit()
+  // }
+
+  let openEditBatch = (i) =>
+  {
+    setbatchData({...data[i]})
     setrowNo(i)
     setshowEditBatch(true)
   }
-
-  let saveEditData=()=>
-  {
+  
+  let saveEditData=()=> 
+  { 
     let editDataCopy=[...data]
     editDataCopy.splice(rowNo,1,batchData)
-    console.log(editDataCopy);
     setdata(editDataCopy)
-    // localStorage.setItem('AdminBatchData',JSON.stringify(data))
+    localStorage.setItem('AdminBatchData',JSON.stringify(editDataCopy))
     handleCloseEdit()
   }
 
 //To Delete
 
-let deleteBatchData=()=>
+let deleteBatchData=(ind)=>
 {
+  const deleteData=[...data]
+  deleteData.splice(ind,1)
+  setdata(deleteData)
+  localStorage.setItem('AdminBatchData',JSON.stringify(data))
 
 }
 
@@ -185,7 +205,10 @@ let sendDataToLocalStorage=()=>
             <td><button style={{ border: 'none', backgroundColor: 'white' }} onClick={()=>
             {
               openEditBatch(ind)
-            }} ><i class="fa-solid fa-pen"></i></button> &nbsp;  <button style={{ border: 'none', backgroundColor: 'white' }} onClick={deleteBatchData} ><i class="fa-solid fa-trash-can"></i></button></td>
+            }} ><i class="fa-solid fa-pen"></i></button> &nbsp;  <button style={{ border: 'none', backgroundColor: 'white' }} onClick={()=>
+            {
+              deleteBatchData(ind)
+            }} ><i class="fa-solid fa-trash-can"></i></button></td>
             </tr>
           })}
           <tr>
