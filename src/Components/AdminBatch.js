@@ -7,53 +7,125 @@ import ModalComponent from './atoms/ModalComponent';
 import DropDown from './atoms/DropDown';
 import InputComponent from './atoms/InputComponent';
 import InputComp from './atoms/InputComp';
+import Select  from 'react-select';
 
 function AdminBatch() {
 
   const [showAddNewBatch, setshowAddNewBatch] = useState(false)
   const [showEditBatch, setshowEditBatch] = useState(false)
   const [showStatus, setshowStatus] = useState(false)
-  const [technoData, settechnoData] = useState(['React', 'java', 'Technologies'])
-  const [mentor, setmentor] = useState(['satyam', 'shantala'])
+  // const [technoData, settechnoData] = useState([ 'Select Below','React', 'java', 'Technologies'])
+  const [mentor, setmentor] = useState(['Satyam', 'Shantala','Shambavi','Megha'])
+  const [data, setdata] = useState([])
+  const [batchData, setbatchData] = useState([{
+        id:1,
+        batchName:'',
+        mentorName:'',
+        technologies:[],
+        startDate:new Date().toLocaleDateString,
+        endDate:new Date().toLocaleDateString,
+  }])
+  const [rowNo, setrowNo] = useState()
+  const [status, setstatus] = useState(
+    {
+      reason:''
+    }
+  )
 
-  let openStatus = () => {
-    setshowStatus(true)
+  const options=[
+    {value:'react',label:'react'},
+    {value:'Java',label:'Java'},
+    {value:'JavaScript',label:'JavaScript'},
+    {value:'Angular',label:'Angular'},
+    {value:'HTML & CSS',label:'HTML & CSS'},
+]
+
+  let openStatus = () => setshowStatus(true)
+
+  let closeStatus = () =>setshowStatus(false)
+  let handleClose = () =>closeStatus()
+  // let openEditBatch = () => setshowEditBatch(true)
+  let hideEditBatch = () => setshowEditBatch(false)
+  let handleCloseEdit = () =>hideEditBatch()
+  let openAddNewBatch = () => setshowAddNewBatch(true)
+  let hideAddNewBatch = () =>setshowAddNewBatch(false)
+  let handleCloseAdd = () => hideAddNewBatch()
+  const [chips] = useState(["react", 'java', 'python'])
+
+  let handleChange=(e)=>
+  {
+    setbatchData({
+      ...batchData,
+      [e.target.name]:e.target.value
+    })
   }
 
-  let closeStatus = () => {
-    setshowStatus(false)
+  //To Add Data
+  let saveBatchData=()=>
+  {
+    let batchDataCopy=[...data]
+        batchDataCopy.push(batchData)
+        setdata(batchDataCopy)
+        localStorage.setItem('AdminBatchData',JSON.stringify(batchDataCopy))
+        setbatchData({
+          id:1,
+          batchName:'',
+          mentorName:'',
+          technologies:[],
+          startDate:new Date().toLocaleDateString,
+          endDate:new Date().toLocaleDateString,
+        })
+        handleCloseAdd()
   }
+//***************************************************************************************** */
 
-  let handleClose = () => {
-    closeStatus()
-  }
+//To Edit Data
 
-  let openEditBatch = () => {
+  let openEditBatch = (i) => 
+  { 
+    console.log(dataFromLocalStorage[i]);
+    setbatchData({...dataFromLocalStorage[i]})
+    setrowNo(i)
     setshowEditBatch(true)
   }
 
-  let hideEditBatch = () => {
-    setshowEditBatch(false)
+  let saveEditData=()=>
+  {
+    let editDataCopy=[...data]
+    editDataCopy.splice(rowNo,1,batchData)
+    console.log(editDataCopy);
+    setdata(editDataCopy)
+    // localStorage.setItem('AdminBatchData',JSON.stringify(data))
+    handleCloseEdit()
   }
 
-  let handleCloseEdit = () => {
-    hideEditBatch()
-  }
+//To Delete
+
+let deleteBatchData=()=>
+{
+
+}
+
+// Reason to change Status
+let handleStatusEvent=(e)=>
+{
+  setstatus({
+    [e.target.name]:e.target.value
+  })
+}
+
+let sendDataToLocalStorage=()=>
+{
+  let statusArr=[...data]
+  statusArr.push(status)
+  setdata(statusArr)
+  localStorage.setItem('ReasonToChangeStatus',JSON.stringify(data))
+  closeStatus()
+}
 
 
-  let openAddNewBatch = () => {
-    setshowAddNewBatch(true)
-  }
-
-  let hideAddNewBatch = () => {
-    setshowAddNewBatch(false)
-  }
-
-  let handleCloseAdd = () => {
-    hideAddNewBatch()
-  }
-
-  const [chips] = useState(["react", 'java', 'python'])
+  let dataFromLocalStorage=[]
+  dataFromLocalStorage=JSON.parse(localStorage.getItem('AdminBatchData'))
 
   return (
     <div>
@@ -89,6 +161,33 @@ function AdminBatch() {
           </tr>
         </thead>
         <tbody>
+          {dataFromLocalStorage.map((val,ind)=>
+          {
+            return <tr key={ind}>
+              <td><input type='checkbox' /></td>
+              <td>{ind + 1}</td>
+              <td>{'TYS00'+ind}</td>
+              <td>{val.batchName}</td>
+              <td>{val.mentorName}</td>
+              <td>
+                {val.technologies.map((val,ind)=>
+                {
+                  return <Chip key={ind} className='ChipDesign' label={val.label} style={{backgroundColor:'#086288',color:'white'}}  />
+                })}
+              </td>
+              <td>{val.startDate}</td>
+              <td>{val.endDate}</td>
+              <td><select name="status" id="cars" style={{ border: 'none' }} onChange={openStatus}>
+              <option value="inProgress">InProgress</option>
+              <option value="pending">Pending</option>
+              <option value="completed">Completed</option>
+            </select></td>
+            <td><button style={{ border: 'none', backgroundColor: 'white' }} onClick={()=>
+            {
+              openEditBatch(ind)
+            }} ><i class="fa-solid fa-pen"></i></button> &nbsp;  <button style={{ border: 'none', backgroundColor: 'white' }} onClick={deleteBatchData} ><i class="fa-solid fa-trash-can"></i></button></td>
+            </tr>
+          })}
           <tr>
             <td><input type='checkbox' /></td>
             <td>01</td>
@@ -96,11 +195,9 @@ function AdminBatch() {
             <td>abcd</td>
             <td>Satyam</td>
             <td>
-              <Stack direction="row" spacing={1}>
                 {chips.map((val) => {
                   return <Chip style={{ backgroundColor: '#086288', color: 'white', padding: '2px 1px', fontSize: '12px' }} label={val} variant="outlined" />
                 })}
-              </Stack>
             </td>
             <td>12 Mar 2022</td>
             <td>04 Dec 2022</td>
@@ -114,34 +211,50 @@ function AdminBatch() {
         </tbody>
       </Table>
 
-      <ModalComponent show={showAddNewBatch} onHide={handleCloseAdd} title='Add New Batch' footerText='Create' handleClose={handleCloseAdd}>
+      <ModalComponent show={showAddNewBatch} onHide={handleCloseAdd} title='Add New Batch' footerText='Create' handleClose={handleCloseAdd} onClick={saveBatchData}>
         <Modal.Body>
           <Form>
-            <InputComp label={'Batch Name'} type={'text'} className={'form-control mb-3'} />
-            <DropDown option={mentor} label={'Mentor Name'} />
-            <DropDown option={technoData} label={'Technologies'} />
-            <InputComp label={'Start Date'} type={'date'} className={'form-control mb-3'} />
-            <InputComp label={'End Date'} type={'date'} className={'form-control'} />
+            <InputComp label={'Batch Name'} type={'text'} className={'form-control mb-3'} value={batchData.batchName} name='batchName'  onChange={handleChange} />
+            <DropDown option={mentor} label={'Mentor Name'} value={batchData.mentorName} name="mentorName" onChange={handleChange} />
+            {/* <DropDown option={technoData} label={'Technologies'} value={batchData.technologies} name='technologies'onChange={handleChange} /> */}
+            <label className='mb-2'>Technologies</label>
+            <Select isMulti name='technologies' options={options} className='basic-multi-select mb-2' classNamePrefix='select' onChange={(e)=>
+            {
+              setbatchData({
+                ...batchData,
+                technologies:e
+              })
+            }} />
+            <InputComp label={'Start Date'} type={'date'} className={'form-control mb-3'} value={batchData.startDate} name='startDate' onChange={handleChange} />
+            <InputComp label={'End Date'} type={'date'} className={'form-control'} value={batchData.endDate} name='endDate' onChange={handleChange} />
           </Form>
         </Modal.Body>
       </ModalComponent>
 
-      <ModalComponent show={showEditBatch} onHide={handleCloseEdit} title={'Edit Batch'} footerText={'Edit'} handleClose={handleCloseEdit}>
+      <ModalComponent show={showEditBatch} onHide={handleCloseEdit} title={'Edit Batch'} footerText={'Edit'} handleClose={handleCloseEdit} onClick={saveEditData}>
         <Modal.Body>
           <Form>
-            <InputComp label={'Batch Name'} type={'text'} className={'form-control mb-3'} />
-            <DropDown option={mentor} label={'Mentor Name'} />
-            <DropDown option={technoData} label={'Technologies'} />
-            <InputComp label={'Start Date'} type={'date'} className={'form-control mb-3'} />
-            <InputComp label={'End Date'} type={'date'} className={'form-control'} />
+            <InputComp label={'Batch Name'} type={'text'} className={'form-control mb-3'} name='batchName' value={batchData.batchName} onChange={handleChange} />
+            <DropDown option={mentor} label={'Mentor Name'} name='mentorName' value={batchData.mentorName} onChange={handleChange}  />
+            {/* <DropDown option={technoData} label={'Technologies'} /> */}
+            <label className='mb-2'>Technologies</label>
+            <Select isMulti name='technologies' options={options} className='basic-multi-select mb-2' classNamePrefix='select' onChange={(e)=>
+            {
+              setbatchData({
+                ...batchData,
+                technologies:e
+              })
+            }} />
+            <InputComp label={'Start Date'} type={'date'} className={'form-control mb-3'} name='startDate' value={batchData.startDate} onChange={handleChange}  />
+            <InputComp label={'End Date'} type={'date'} className={'form-control'} name='endDate' value={batchData.endDate} onChange={handleChange}   />
           </Form>
         </Modal.Body>
       </ModalComponent>
 
-      <ModalComponent show={showStatus} onHide={handleClose} title={'Reason to Change Status'} footerText={'Submit'}>
+      <ModalComponent show={showStatus} onHide={handleClose} title={'Reason to Change Status'} footerText={'Submit'} onClick={sendDataToLocalStorage}>
         <Modal.Body>
           <Form>
-            <FormComponent className={"mb-3"} controlId={"exampleForm.ControlTextarea1"} label='Reason' as={'textarea'} rows={3} />
+            <FormComponent className={"mb-3"} controlId={"exampleForm.ControlTextarea1"} label='Reason' as={'textarea'} rows={3} name='reason' value={status.reason} onChange={handleStatusEvent} />
           </Form>
         </Modal.Body>
       </ModalComponent>

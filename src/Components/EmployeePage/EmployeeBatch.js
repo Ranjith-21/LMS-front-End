@@ -37,7 +37,7 @@ const text = <span className='emptext'>
   </tr>
 </span>;
 
-function EmployeeBatch() {
+function EmployeeBatch({setPage}) {
   const [showStatus, setshowStatus] = useState(false)
   const [showAttendance, setshowAttendance] = useState(false)
   let date = new Date()
@@ -74,10 +74,9 @@ function EmployeeBatch() {
     console.info('You clicked the delete icon.');
   };
 
-  let navigate = useNavigate()
 
   let navigateToBatch2 = () => {
-    navigate('/Mentor/EmployeeList')
+    setPage('EmployeeBatch2')
   }
 
 

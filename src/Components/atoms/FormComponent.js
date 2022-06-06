@@ -14,7 +14,8 @@ function FormComponent(
     as={},
     rows={},
     style={},
- 
+    value={},
+    onChange=()=>{}
   }
 ) {
   return (
@@ -29,10 +30,9 @@ function FormComponent(
                 name={name}
                 as={as}
                 rows={rows}
+                value={value}
+                onChange={onChange}
               />{children}   
-
-          
-          
               </Form.Group>
     </div>
   )

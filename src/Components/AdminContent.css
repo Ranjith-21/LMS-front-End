@@ -167,3 +167,8 @@
         width: 100vh;
     }
 }
+.editDelete
+{
+    border: none;
+    background-color: white;
+}

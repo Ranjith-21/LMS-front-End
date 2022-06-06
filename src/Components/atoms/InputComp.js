@@ -9,13 +9,14 @@ const InputComp = (
         type='',
         className='',
         style={},
+        name=''
         
     }
 ) => {
   return (
     <div>
         <label className='mb-2'>{label}</label>
-        <input value={value} onChange={onChange} placeholder={placeholder} type={type} className={className} style={style} />
+        <input value={value} onChange={onChange} placeholder={placeholder} type={type} className={className} style={style} name={name}/>
     </div>
   )
 }

@@ -6,6 +6,9 @@ const DropDown = (
         option=[],
         label='',
         style={},
+        name='',
+        value={},
+        onChange=()=>{}
     }
 ) => {
   return (
@@ -14,6 +17,9 @@ const DropDown = (
               <Form.Label>{label} </Form.Label>
                     <Form.Select
             aria-label="Default select example"
+            name={name}
+            value={value}
+            onChange={onChange}
           >
               {option.map((val,ind)=>
               {

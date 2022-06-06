@@ -14,13 +14,14 @@ function ModalComponent(
     title='',
     footerText='',
     size='',
-    handleClose=()=>{}
+    handleClose=()=>{},
+    onClick=()=>{}
 }
 ) {
   return (
     <div>
 <Modal size={size} show={show} onHide={onHide} className={className} aria-labelledby={arialabelledby} centered >
-        <Modal.Header closeButton>
+        <Modal.Header closeButton> 
           <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
             {children}
@@ -29,7 +30,7 @@ function ModalComponent(
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={onClick}>
            {footerText}
           </Button>
         </Modal.Footer>

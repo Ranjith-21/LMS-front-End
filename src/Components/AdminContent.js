@@ -6,6 +6,7 @@ import AdminMentor from './AdminMentor' ;
 import AdminRequest from './AdminRequest';
 import AdminBatch from './AdminBatch';
 import InputComponent from './atoms/InputComponent';
+import { useNavigate } from 'react-router';
 
 // const { Sider, Content,Header } = Layout;
 
@@ -50,6 +51,13 @@ let changeSignupImage=()=>
     setisMentor(false)
   }
 }
+
+let navigate=useNavigate()
+let logout=()=>
+{
+  navigate('/')
+}
+
   return (
     <div >
       <Navbar className='navBar'>
@@ -64,7 +72,7 @@ let changeSignupImage=()=>
             </div>
           </Navbar.Text>
           <Navbar.Text className='jsutify-content-end'  >
-            <Button variant="outline-primary" style={{ padding: '5px 20px' }} >Logout</Button>
+            <Button variant="outline-primary" style={{ padding: '5px 20px' }} onClick={logout} >Logout</Button>
           </Navbar.Text>
         </Container>
       </Navbar>
@@ -73,51 +81,53 @@ let changeSignupImage=()=>
         <div className='col-lg-1 mainAdmin' >
           <br />
           {isBatch?
-          <Link to='/Admin/Batch'>
+          // <Link to='/Admin/Batch'>
            <button className='BatchIcon1' value='admin' onClick={changeBatchImage} >
       <img  width='25px' alt='' style={{marginLeft:'10px'}} src={require('./../Assests/Batch1.png')} />Batch
       </button>
-          </Link>:
-          <Link to='/Admin/Batch'>
+          // </Link>
+          :
+          // <Link to='/Admin/Batch'>
           <button className='BatchIcon' onClick={changeBatchImage}>
           <img alt='' width='25px' style={{marginLeft:'10px'}}  src={require('./../Assests/Batch.png')} />Batch
           </button>
-          </Link>
+          // </Link>
           }
           <br /> <hr style={{ width: '51px' }} />
           {isMentor?
-          <Link to='/Admin/Mentor' >
+          // <Link to='/Admin/Mentor' >
             <button className='MentorIcon1' value='admin'  onClick={changeMentorImage}  >
             <img  width='25px' alt=''src={require('./../Assests/Mentor1.png')} />
           
             Mentor
             </button>
-          </Link>:
-          <Link  to='/Admin/Mentor' >
+          // </Link>
+          :
+          // <Link  to='/Admin/Mentor' >
           <button className='MentorIcon' value='admin'  onClick={changeMentorImage}  >
             <img  width='25px' alt=''  src={require('./../Assests/Mentor.png')} />
             &nbsp;
             Mentor
             </button>
-          </Link>
+          // </Link>
           }
 <br /><hr style={{ width: '51px' }} />
 
           {isSignup?
-          <Link to='/Admin/Request'>
+          // <Link to='/Admin/Request'>
             <button className='RequestIcon1' onClick={changeSignupImage}  >
             <img width='25px' alt='' style={{marginLeft:'0px'}} src={require('./../Assests/Request1.png')} />
             &nbsp;
             Request
             </button>
-          </Link>:
-          <Link  to='/Admin/Request'>
+          // </Link>
+          :
             <button className='RequestIcon'  onClick={changeSignupImage}  >
             <img width='25px' alt='' style={{marginLeft:'0px'}} src={require('./../Assests/Request.png')} />
             &nbsp;
             Request
             </button>
-          </Link>
+
           }
 
         </div>
@@ -133,9 +143,9 @@ let changeSignupImage=()=>
           </Breadcrumb.Item>
         </Breadcrumb>
         <div className=' adminRoutes col-lg-10 col-md-10 col-sm-10 col-xs-10' >
-          {page==="Batch" ? <AdminBatch /> : ''}
-          {page==="Mentor" ? <AdminMentor /> : ''}
-          {page==="Request" ? <AdminRequest /> : ''}
+          {page==="Batch" && <AdminBatch /> }
+          {page==="Mentor" && <AdminMentor /> }
+          {page==="Request" && <AdminRequest /> }
         </div>
       </Row>
 
