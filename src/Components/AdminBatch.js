@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Container, Form, Modal, Navbar, Table } from 'react-bootstrap'
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
@@ -78,27 +78,6 @@ function AdminBatch() {
         handleCloseAdd()
   }
 //***************************************************************************************** */
-
-//To Edit Data
-
-  // let openEditBatch = (i) => 
-  // { 
-  //   console.log(dataFromLocalStorage[i]);
-  //   setbatchData({...dataFromLocalStorage[i]})
-  //   setrowNo(i)
-  //   setshowEditBatch(true)
-  // }
-
-  // let saveEditData=()=>
-  // {
-  //   let editDataCopy=[...data]
-  //   editDataCopy.splice(rowNo,1,batchData)
-  //   console.log(editDataCopy);
-  //   setdata(editDataCopy)
-  //   // localStorage.setItem('AdminBatchData',JSON.stringify(data))
-  //   handleCloseEdit()
-  // }
-
   let openEditBatch = (i) =>
   {
     setbatchData({...data[i]})
@@ -142,6 +121,27 @@ let sendDataToLocalStorage=()=>
   localStorage.setItem('ReasonToChangeStatus',JSON.stringify(data))
   closeStatus()
 }
+
+
+//***************************************************************************************** */
+//setting initial Data in LocalStorage
+let initialData=[{
+  id:1,
+  batchName:'1st Batch',
+  mentorName:'Satyam',
+  technologies:[{value:'react',label:'react'},{value:'JavaScript',label:'JavaScript'}],
+  startDate:'2022-11-01',
+  endDate:'2022-21-01',
+}]
+
+  useEffect(() => {
+    if (localStorage.getItem('AdminBatchData')) {
+      setdata(JSON.parse(localStorage.getItem('AdminBatchData')))
+    }
+    else {
+      setdata(initialData)
+    }
+  }, [])
 
 
   let dataFromLocalStorage=[]

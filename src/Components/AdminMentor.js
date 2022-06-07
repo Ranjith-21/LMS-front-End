@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Container, Form, Modal, Navbar, Table } from 'react-bootstrap'
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
@@ -93,7 +93,21 @@ let deleteMentor=(i)=>
   // console.log(mentorData);
   // console.log(mentorData);
 
-  
+  /*************************************************************************** */
+  let initialData=[{
+    mentorName:'Satyam',
+    employeeId:'TYS0015',
+    emailId:'satyam@gmail.com',
+    skills:[{value:'react',label:'react'},{value:'JavaScript',label:'JavaScript'},{value:'HTML & CSS',label:'HTML & CSS'}]
+  }]
+  useEffect(() => {
+    if (localStorage.getItem('AddMentorData')) {
+      setdata(JSON.parse(localStorage.getItem('AddMentorData')))
+    }
+    else{
+      setdata([initialData])
+    }
+  }, [])
 
 // let getdataFromLocalStorage=JSON.parse(localStorage.getItem('AddMentorData'))
 
@@ -208,4 +222,3 @@ let deleteMentor=(i)=>
 }
 
 export default AdminMentor
-
