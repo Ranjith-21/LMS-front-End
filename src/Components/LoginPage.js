@@ -2,10 +2,10 @@ import React from 'react'
 import { ButtonGroup, Form, Row } from 'react-bootstrap'
 // import { Button, Card } from 'react-bootstrap'
 import './Login.css' 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
-function LoginPage() {
+function LoginPage({loginData}) {
     const [emperror, setemperror] = useState('')
     const [passError, setpassError] = useState('')
     const [userData, setuserData] = useState({

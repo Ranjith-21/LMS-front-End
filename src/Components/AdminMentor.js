@@ -47,6 +47,7 @@ function AdminMentor() {
     let dataCopy=[...data]
     dataCopy.push(adminMentorData)
     setdata(dataCopy)
+    console.log(dataCopy);
     localStorage.setItem('AddMentorData',JSON.stringify(dataCopy))
     setAdminMentorData([{
       MentorName:'',
@@ -81,6 +82,7 @@ let deleteMentor=(i)=>
   deleteDataCopy.splice(i,1)
   setdata(deleteDataCopy)
   localStorage.setItem('AddMentorData',JSON.stringify(data))
+  console.log(deleteDataCopy);
 }
 
   let closeEditMentor = () => setshowEditMentor(false)
@@ -105,11 +107,12 @@ let deleteMentor=(i)=>
       setdata(JSON.parse(localStorage.getItem('AddMentorData')))
     }
     else{
-      setdata([initialData])
+      setdata(initialData)
     }
   }, [])
 
-// let getdataFromLocalStorage=JSON.parse(localStorage.getItem('AddMentorData'))
+  let getdataFromLocalStorage=[]
+getdataFromLocalStorage=JSON.parse(localStorage.getItem('AddMentorData'))
 
   const [chips] = useState(["react", 'java', 'python'])
  
@@ -143,7 +146,7 @@ let deleteMentor=(i)=>
           </tr>
         </thead>
         <tbody>
-       {mentorData.map((val,ind)=>
+       {getdataFromLocalStorage.map((val,ind)=>
        {
          return <tr>
            <td><input type='checkbox' /></td>
@@ -170,7 +173,7 @@ let deleteMentor=(i)=>
 
           <tr>
             <td><input type='checkbox' /></td>
-            <td>01</td>
+            <td>0</td>
             <td>Chandan</td>
             <td>#1235646</td>
             <td>abc@info.com</td>

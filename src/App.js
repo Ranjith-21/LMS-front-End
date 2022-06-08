@@ -27,6 +27,7 @@ import DataStore from './Components/DataStore';
 // import Routes from './Routes'
 // import LoginPage from './Components/LoginPage';
 import { Routes } from 'react-router-dom';
+// import DataStore from './Components/DataStore';
 
 
 function App() {
@@ -34,7 +35,7 @@ function App() {
   // const [show, setshow] = useState(true)
   return (
     <div>
-
+      <DataStore/>
       {/* <AdminContent/> */}
     
       {/* <div className="App"> */} 

@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
+import LoginPage from './LoginPage';
 
 function DataStore() {
     const [data, setData] = useState
@@ -21,11 +22,10 @@ function DataStore() {
         }
     ])
 
-    localStorage.setItem('data', JSON.stringify(data))
+   localStorage.setItem('data', JSON.stringify(data))
 
   return (
     <div>
-
     </div>
   )
 }
