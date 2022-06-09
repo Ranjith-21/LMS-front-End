@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {Button,Col,Form,Nav,Navbar,Row,} from "react-bootstrap";
+import {Accordion, Button,Col,Form,Nav,Navbar,Row,} from "react-bootstrap";
 import { useNavigate } from 'react-router';
 import FormSelect from './../atoms/FormSelect';
 import './SignUp.css'
@@ -16,7 +16,9 @@ const [state, setstate] = useState([
   'Select Below','Karnataka','Kerala','TamilNadu'
 ])
 
-  const [educationData, setEducationData] = useState({
+// Initaila Data for Education Details >>>
+
+  const [inputList, setInputList] = useState([{
     EducationType: "",
     YearOfpassing: "",
     PerCenTage: "",
@@ -24,28 +26,57 @@ const [state, setstate] = useState([
     InstituteName: "",
     Specilization: "",
     State: "",
-  });
+  }]);
 
-  let getEducationData = (e) => {
-    setEducationData({
-      ...educationData,
-      [e.target.name]: e.target.value,
-    });
-  };
-  console.log(educationData);
+// HandleChange for Education Details >>>
+
+  let handleChange=(e,ind)=>
+{
+  const {name,value}=e.target;
+  let newInputList=inputList.map((item,index)=>{
+    if(index===ind)
+    {
+      console.log(item);
+      return {...item,[name]:value}
+    }
+    console.log(item);
+    return item;
+  }
+  )
+  setInputList(newInputList);
+}
+
+// Delete Data for Education Details >>>
+
+let deleteEducationData=(e,ind)=>
+{
+  e.preventDefault();
+  const list = [...inputList];
+  list.splice(ind, 1);
+  setInputList(list);
+}
+
+
+// Add Data for Education Details >>>
+
+let addEducationData=()=>
+{
+  setInputList([...inputList,{
+    ContactType:'',
+    ContactNumber:''
+  }])
+}
+
+// Submit Data for Education Details into LocalStorage >>>
+
   let DatasentToLocalStorage = () => {
-    localStorage.setItem("educationData", JSON.stringify(educationData));
+    localStorage.setItem("educationData", JSON.stringify(inputList));
   };
-  let ValidateFunction = () => {
-    if (
-      educationData.EducationType &&
-      educationData.YearOfpassing &&
-      educationData.PerCenTage &&
-      educationData.UnivercityName &&
-      educationData.InstituteName &&
-      educationData.Specilization &&
-      educationData.State
-    ) {
+
+// Validating and Navigating to next Page >>>
+
+  let ValidateAndNavigate = () => {
+    if (inputList.length > 0) {
       DatasentToLocalStorage();
       navigateNext();
     } else {
@@ -99,29 +130,44 @@ const [state, setstate] = useState([
             </Nav.Item>
           </Nav>
         </navbar>
-        <Form className="container fluid  mt-3 square border border-light border-4 rounded-3 ">
-          <Row className="mb-3">
-            <FormSelect style={{ textAlign: "left" }} as={Col} label={'Education Type'} name="EducationType" value={educationData.EducationType} onChange={getEducationData}  options={eduType}  />
-            <FormControl style={{ textAlign: "left" }} as={Col} label={'Year Of Passing'} type={"text"} name={"YearOfpassing"}  value={educationData.YearOfpassing}   onChange={getEducationData}  />
+        <Accordion defaultActiveKey="0">
+  <Accordion.Item eventKey="0">
+    <Accordion.Header>Education Details</Accordion.Header>
+    <Accordion.Body>
+      {inputList.map((val,ind)=>
+      {
+        return <Form className="container fluid  mt-3 square border border-light border-4 rounded-3" >
+             <Row className="mb-3">
+            <FormSelect style={{ textAlign: "left" }} as={Col} label={'Education Type'} name="EducationType" value={val.EducationType} onChange={(e)=>handleChange(e,ind)}  options={eduType}  />
+            <FormControl style={{ textAlign: "left" }} as={Col} label={'Year Of Passing'} type={"text"} name="YearOfpassing"  value={val.YearOfpassing}   onChange={(e)=>handleChange(e,ind)}  />
           </Row>
-          <Row className="mb-3">
-            <FormControl  style={{ textAlign: "left" }}as={Col} label={'Percentage (%)'} type="text"name="PerCenTage"  value={educationData.PerCenTage} onChange={getEducationData} />
-            <FormControl style={{ textAlign: "left" }} as={Col} label={'University Name'}  type="text" name="UnivercityName" value={educationData.UnivercityName} onChange={getEducationData}  />
+           <Row className="mb-3">
+            <FormControl  style={{ textAlign: "left" }}as={Col} label={'Percentage (%)'} type="text"name="PerCenTage"  value={val.PerCenTage} onChange={(e)=>handleChange(e,ind)} />
+            <FormControl style={{ textAlign: "left" }} as={Col} label={'University Name'}  type="text" name="UnivercityName" value={val.UnivercityName} onChange={(e)=>handleChange(e,ind)}  />
           </Row>
-          <Row className="mb-3">
-            <FormControl style={{ textAlign: "left" }} as={Col} label={'Institue Name' }  type="text" name="InstituteName"  value={educationData.InstituteName}   onChange={getEducationData} />
-            <FormControl style={{ textAlign: "left" }} as={Col} label={'Specializataion'}   type="text" name="Specilization" value={educationData.Specilization}   onChange={getEducationData} />
+           <Row className="mb-3">
+            <FormControl style={{ textAlign: "left" }} as={Col} label={'Institue Name' }  type="text" name="InstituteName"  value={val.InstituteName}   onChange={(e)=>handleChange(e,ind)} />
+            <FormControl style={{ textAlign: "left" }} as={Col} label={'Specializataion'}   type="text" name="Specilization" value={val.Specilization}  onChange={(e)=>handleChange(e,ind)} />
           </Row>
-          <Row className="mb-3">
-            <FormSelect style={{ textAlign: "left" }}  as={Col} label={'State'} name="State" value={educationData.State}  onChange={getEducationData} options={state}   />
+           <Row className="mb-3">
+            <FormSelect style={{ textAlign: "left" }}  as={Col} label={'State'} name="State" value={val.State}  onChange={(e)=>handleChange(e,ind)} options={state}   />
           </Row>
-          <Row>
-          <p style={{ textAlign:'end',cursor:'pointer' }} >
-          <i class="fa-solid fa-plus"></i>
-          <b> Add</b>
-            </p>
+           <div style={{textAlign:'end'}}>
+                {inputList.length !== 1 && <button  onClick={(e)=>
+                {
+                    deleteEducationData(e,ind)
+                }} className="btn btn-outline-primary p-1 m-2" >Remove</button>}
+              {inputList.length - 1 === ind &&  <p onClick={addEducationData} style={{ textAlign:'end',cursor:'pointer' }}  >
+          <b>➕ Add</b>
+            </p>}
+            </div>
+        </Form>
+      })}
+    </Accordion.Body>
+  </Accordion.Item>
+</Accordion>
+  <Row>
             <Navbar className="container fluid  col-8 mt-5 square border border-light border-4 rounded-3 " expand="lg">
-              {/* <Container fluid> */}
               <ButtonComp variant="secondary" size="md" onClick={navigatePrevious} label={'Previous'} />
               <Nav
                 className="me-auto my-2 my-lg-0"
@@ -129,13 +175,10 @@ const [state, setstate] = useState([
                 navbarScroll
               ></Nav>
               <Form className="d-flex">
-                <ButtonComp variant="primary" size="md" onClick={ValidateFunction}  label={'Next'}/>
+                <ButtonComp variant="primary" size="md" onClick={ValidateAndNavigate}  label={'Next'}/>
               </Form>
-              {/* </Container> */}
             </Navbar>
           </Row>
-        </Form>
-        {/* <AddressDetails/> */}
       </div>
     </div>
   );

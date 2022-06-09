@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Col, Container, Form, Nav, Navbar, Row, } from "react-bootstrap";
+import { Accordion, Button, Col, Container, Form, Nav, Navbar, Row, } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import './SignUp.css'
 import EmployeeDropDown from './../atoms/EmployeeDropDown';
@@ -8,7 +8,7 @@ import FormControl from "../atoms/FormControl";
 import ButtonComp from "../atoms/ButtonComp";
 
 function AddressDetails() {
-  const [addressData, setAddressData] = useState({
+  const [inputList, setInputList] = useState([{
     AddressType: "",
     DoorNumber: "",
     Street: "",
@@ -17,7 +17,7 @@ function AddressDetails() {
     State: "",
     pinCode: "",
     LandMark: "",
-  });
+  }]);
   const [option, setoption] = useState([
     'Select Below','Permanant', 'Temporary', 'Office'
   ])
@@ -29,26 +29,54 @@ function AddressDetails() {
     'Select Below','Karnataka','Kerala','TamilNadu'
   ])
 
-  let getAddressData = (e) => {
-    setAddressData({ ...addressData, [e.target.name]: e.target.value });
-  };
+// HandleChange for Address Details >>>
+
+  let handleChange=(e,ind)=>
+{
+  const {name,value}=e.target;
+  let newInputList=inputList.map((item,index)=>{
+    if(index===ind)
+    {
+      console.log(item);
+      return {...item,[name]:value}
+    }
+    console.log(item);
+    return item;
+  }
+  )
+  setInputList(newInputList);
+}
+
+// Delete Data for Address Details >>>
+
+let deleteAddressData=(e,ind)=>
+{
+  e.preventDefault();
+  const list = [...inputList];
+  list.splice(ind, 1);
+  setInputList(list);
+}
 
 
+// Add Data for Address Details >>>
+
+let addAddressData=()=>
+{
+  setInputList([...inputList,{
+    ContactType:'',
+    ContactNumber:''
+  }])
+}
 
   let DatasentToLocalStorage = () => {
-    localStorage.setItem("AddressDetails", JSON.stringify(addressData));
+    localStorage.setItem("AddressDetails", JSON.stringify(inputList));
   };
-  let ValidateData = () => {
-    if (
-      addressData.AddressType &&
-      addressData.DoorNumber &&
-      addressData.Street &&
-      addressData.Locality &&
-      addressData.City &&
-      addressData.State &&
-      addressData.pinCode &&
-      addressData.LandMark
-    ) {
+
+  
+// Validating and Navigating to next Page >>>
+
+  let ValidateAndNavigate = () => {
+    if (inputList.length > 0) {
       DatasentToLocalStorage();
       navigateNext();
     } else {
@@ -65,7 +93,6 @@ function AddressDetails() {
   };
   return (
     <div>
-      {" "}
       <div className="container fluid">
         <navbar>
           <Nav variant="scrollable" defaultActiveKey="/AddressDetails">
@@ -101,25 +128,45 @@ function AddressDetails() {
             </Nav.Item>
           </Nav>
         </navbar>
-        <Form className="  mt-3 square border border-light border-4 rounded-3 ">
+        <Accordion defaultActiveKey="0">
+  <Accordion.Item eventKey="0">
+    <Accordion.Header>Address Details</Accordion.Header>
+    <Accordion.Body>
+    {inputList.map((val,ind)=>
+    {
+      return <Form className="  mt-3 square border border-light border-4 rounded-3 p-2 ">
           <Row className="mb-3">
-            <FormSelect  style={{ textAlign: "left", width: '50%' }} as={Col} label={'Address Type'}  name={"AddressType"}
-                value={addressData.AddressType}
-                onChange={getAddressData} options={option}  />
-                <FormControl   style={{ textAlign: "left", width: '50% ' }} as={Col} label={'Door No.'}  type="text" name="DoorNumber" value={addressData.DoorNumber}  onChange={getAddressData}/>
+            <FormSelect  style={{ textAlign: "left", width: '50%' }} as={Col} label={'Address Type'}  name="AddressType"
+                value={val.AddressType}
+               onChange={(e)=>handleChange(e,ind)} options={option}  />
+                <FormControl   style={{ textAlign: "left", width: '50% ' }} as={Col} label={'Door No.'}  type="text" name="DoorNumber" value={val.DoorNumber}  onChange={(e)=>handleChange(e,ind)}/>
           </Row>
           <Row className="mb-3">
-            <FormControl style={{ textAlign: "left" }} as={Col} label={'Street'}  type="text" name="Street" value={addressData.Street} onChange={getAddressData}  />
-            <FormControl style={{ textAlign: "left" }} as={Col} label={'Locality'}  type="text" name="Locality" value={addressData.Locality} onChange={getAddressData}  />
+            <FormControl style={{ textAlign: "left" }} as={Col} label={'Street'}  type="text" name="Street" value={val.Street} onChange={(e)=>handleChange(e,ind)}  />
+            <FormControl style={{ textAlign: "left" }} as={Col} label={'Locality'}  type="text" name="Locality" value={val.Locality} onChange={(e)=>handleChange(e,ind)}  />
           </Row>
           <Row className="mb-3">
-            <FormSelect  style={{ textAlign: "left" }} as={Col} label={'City'}   name="City" value={addressData.City} onChange={getAddressData} options={city}  />
-            <FormSelect    style={{ textAlign: "left" }}  as={Col} label={'State'}  name="State" value={addressData.State}onChange={getAddressData} options={state}  />
+            <FormSelect  style={{ textAlign: "left" }} as={Col} label={'City'}   name="City" value={val.City} onChange={(e)=>handleChange(e,ind)} options={city}  />
+            <FormSelect    style={{ textAlign: "left" }}  as={Col} label={'State'}  name="State" value={val.State} onChange={(e)=>handleChange(e,ind)} options={state}  />
           </Row>
           <Row className="mb-3">
-            <FormControl style={{ textAlign: "left" }}  as={Col}   type={"text"} name={"pinCode"}  value={addressData.pinCode} onChange={getAddressData} label={'PIN Code'}/>
-            <FormControl   style={{ textAlign: "left" }} as={Col} label={'Land Mark'}  type={"text"} name={"LandMark"} value={addressData.LandMark} onChange={getAddressData}/>
+            <FormControl style={{ textAlign: "left" }}  as={Col}   type={"text"} name={"pinCode"}  value={val.pinCode} onChange={(e)=>handleChange(e,ind)} label={'PIN Code'}/>
+            <FormControl   style={{ textAlign: "left" }} as={Col} label={'Land Mark'}  type={"text"} name={"LandMark"} value={val.LandMark} onChange={(e)=>handleChange(e,ind)}/>
           </Row>
+          <div style={{textAlign:'end'}}>
+                {inputList.length !== 1 && <button  onClick={(e)=>
+                {
+                    deleteAddressData(e,ind)
+                }} className="btn btn-outline-primary p-1 m-2" >Remove</button>}
+              {inputList.length - 1 === ind &&  <p onClick={addAddressData} style={{ textAlign:'end',cursor:'pointer' }}  >
+          <b>➕ Add</b>
+            </p>}
+            </div>
+      </Form>
+    })}
+    </Accordion.Body>
+  </Accordion.Item>
+</Accordion>
           <Row>
             <Navbar
               className="container fluid  col-8 mt-5 square border border-light border-4 rounded-3 "
@@ -133,12 +180,11 @@ function AddressDetails() {
                   navbarScroll
                 ></Nav>
                 <Form className="d-flex">
-                <ButtonComp variant="primary" size="md"  onClick={ValidateData} label={'Next'} />
+                <ButtonComp variant="primary" size="md"  onClick={ValidateAndNavigate} label={'Next'} />
                 </Form>
               </Container>
             </Navbar>
           </Row>
-        </Form>
       </div>
     </div>
   );
