@@ -7,7 +7,7 @@ import FormSelect from "../atoms/FormSelect";
 
 
 function SecondaryInfo() {
-  const [secondaryData, setSecondaryinfo] = useState({
+  const [secondaryData, setSecondaryinfo] = useState([{
     PanNo: "",
     Aadharno: "",
     FathersName: "",
@@ -15,7 +15,7 @@ function SecondaryInfo() {
     SpouseName: "",
     PassportNo: "",
     MaritalStatus: "",
-  });
+  }]);
 
   const [martial, setmartial] = useState([
     'Select Below', 'Married','Un-Married'

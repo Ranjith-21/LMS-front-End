@@ -9,7 +9,7 @@ const ButtonComp = (
         {
 
         },
-        label
+        label,
     }
 ) => {
   return (

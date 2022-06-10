@@ -1,0 +1,14 @@
+.empTable
+{
+    font-size: 15px;
+    padding: -5px !important;
+}
+.empTable b
+{
+    font-size: 16px;
+}
+
+.empTable th
+{
+    font-size: 25px;
+}

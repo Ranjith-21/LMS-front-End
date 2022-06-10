@@ -1,11 +1,8 @@
-// import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import 'bootstrap.bundle.min.js'
 import LoginPage from './Components/LoginPage';
 import { BrowserRouter, Route, Router } from 'react-router-dom';
 import AdminContent from './Components/AdminContent';
-// import { Routes } from 'react-router-dom';
 import Primary from './Components/signUpPage/Primary';
 import SecondaryInfo from './Components/signUpPage/SecondaryInfo';
 import EducationDetails from './Components/signUpPage/EducationDetails';
@@ -14,45 +11,18 @@ import BankDetails from './Components/signUpPage/BankDetails';
 import TechnicalSkills from './Components/signUpPage/TechnicalSkills';
 import Experience from './Components/signUpPage/Experience';
 import Contact from './Components/signUpPage/Contact';
-// import EmployeeMainPage from './Components/EmployeePage/EmployeeMainPage';
-import EmployeeBatch from './Components/EmployeePage/EmployeeBatch';
-import EmployeeBatch2 from './Components/EmployeePage/EmployeeBatch2';
-// import Practise from './Components/Practise';
 import EmployeePage from './Components/EmployeePage/EmployeePage.js';
-import { ModalComponent } from './Components/atoms/ModalComponent';
-import { useState } from 'react';
-import Practise from './Components/EmployeePage/Practise';
-import BasicTabs from './Components/signUpPage/SignUpNavBar';
 import DataStore from './Components/DataStore';
-// import Routes from './Routes'
-// import LoginPage from './Components/LoginPage';
 import { Routes } from 'react-router-dom';
-// import DataStore from './Components/DataStore';
+import RecordStatus from './Components/signUpPage/RecordStatus';
+import Employee from './EmplyeeComponents/Employee';
 
 
 function App() {
-  
-  // const [show, setshow] = useState(true)
+
   return (
     <div>
       <DataStore/>
-      {/* <AdminContent/> */}
-    
-      {/* <div className="App"> */} 
-       {/* <AdminTable/> */}
-        {/* <LoginPage/> */}
-        {/* <DataStore/> */}
-        {/* <EmployeeMainPage/> */}
-        {/* <EmployeeBatch/> */}
-        {/* <EmployeeBatch2/> */}
-        {/* <Practise/> */}
-        {/* <EmployeePage/> */}
-        {/* <ModalComponent show={show} /> */}
-        {/* <Practise/> */}
-        {/* <BasicTabs/> */}
-        {/* <BasicTabs/> */}
-      {/* </div> */}
-  
       <Routes>
       <Route path='/' element={<LoginPage/>}/>
         <Route path="/Primary" element={<Primary/>} />
@@ -65,7 +35,8 @@ function App() {
           <Route path="/TechnicalSkills" element={<TechnicalSkills />} />
          <Route path="/Experience" element={<Experience />} />
            <Route path="/Contact" element={<Contact />} />
-           <Route path='/LoginPage' element={<LoginPage/>}/>
+           <Route path='/RecordStatus' element={<RecordStatus/>}/>
+           <Route path='/Employee' element={<Employee/>} />
           </Routes>
      
     </div>

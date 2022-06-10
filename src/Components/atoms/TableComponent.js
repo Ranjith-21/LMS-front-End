@@ -1,43 +1,75 @@
 import React from 'react'
-import { Table } from 'react-bootstrap'
+import './../../EmplyeeComponents/EmployeeInitialPage.css'
 
-export const TableComponent = (
-    {
-        children,
-        headerOne,
-        headerTwo,
-        headerThree,
-        headerFour,
-        headerFive,
-        headerSix,
-        headerSeven,
-        headerEight,
-        headerNine,
-        headerTen,
-    }
-)=>
-    {
-
-        
+function TableComponent({
+    theading='',
+    firstRow={},
+    secondRow={},
+    thirdRow={}
+}) {
   return (
     <div>
-        <Table>
-            <thead>
-                <td>{headerOne}</td>
-                <td>{headerTwo}</td>
-                <td>{headerThree}</td>
-                <td>{headerFour}</td>
-                <td>{headerFive}</td>
-                <td>{headerSix}</td>
-                <td>{headerSeven}</td>
-                <td>{headerEight}</td>
-                <td>{headerNine}</td>
-                <td>{headerTen}</td>
-           </thead>
-           <tbody>
-               {children}
-           </tbody>
-        </Table>
+      <table className='empTable'>
+        <thead>
+          <tr>
+            <th>{theading}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            {firstRow.map((val, ind) => {
+              return (
+                  Object.keys(val).map((value, idx1) => {
+                      return (
+                        <td key={idx1}>
+                          {value}:<b>{val[value]}</b>{" "}
+                        </td>
+                      );
+                  })
+              )
+            })}
+          </tr>
+          <tr>
+            {secondRow.map((val, ind) => {
+                return (
+                    Object.keys(val).map((value, idx1) => {
+                        return (
+                          <td key={idx1}>
+                            {value}:<b>{val[value]}</b>{" "}
+                          </td>
+                        );
+                    })
+                )
+            }
+            )}
+          </tr>
+          <tr>
+            {thirdRow.map((val, ind) => {
+                return (
+                    Object.keys(val).map((value, idx1) => {
+                        return (
+                          <td key={idx1}>
+                            {value}:<b>{val[value]}</b>
+                          </td>
+                        );
+                    })
+                )
+            }
+            )}
+          </tr>
+        </tbody>
+      </table>
+      <hr
+        style={{
+          borderTop: "2px dotted black",
+          width: "100%",
+          backgroundColor: "white",
+        }}
+      />
     </div>
-  )
+  );
 }
+
+export default TableComponent
+
+

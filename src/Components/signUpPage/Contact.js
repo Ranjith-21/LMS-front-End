@@ -4,9 +4,6 @@ import { useNavigate } from 'react-router';
 import ButtonComp from '../atoms/ButtonComp';
 import FormControl from '../atoms/FormControl';
 import FormSelect from './../atoms/FormSelect';
-import LoginPage from './../LoginPage';
-
-
 
 function Contact() {
 const [inputList, setInputList] = useState([{
@@ -40,7 +37,7 @@ let handleChange=(e,ind)=>
   setInputList(newInputList);
 }
 
-
+// Detele Contact Details
 let deleteContactData=(e,ind)=>
 {
   e.preventDefault();
@@ -49,6 +46,7 @@ let deleteContactData=(e,ind)=>
   setInputList(list);
 }
 
+//Add Contact Details
 let addContactData=()=>
 {
   setInputList([...inputList,{
@@ -57,12 +55,13 @@ let addContactData=()=>
   }])
 }
 
+//Submit Contact Details
 let submitData=()=>
 {
   if(inputList.length>0)
   {
     DatasentToLocalStorage();
-    navigate('/LoginPage')
+    navigate('/RecordStatus')
   }else
   {
     alert("Please Fill all the feilds");

@@ -78,6 +78,7 @@ function AdminBatch() {
         handleCloseAdd()
   }
 //***************************************************************************************** */
+// To Edit Data
   let openEditBatch = (i) =>
   {
     setbatchData({...data[i]})

@@ -103,6 +103,9 @@ function LoginPage({loginData}) {
         else if(roleStatus === 'employee')
         {
             navigate('/EmployeePage')
+        }else if(roleStatus === 'trainee')
+        {
+            navigate('/Employee')
         }
 
         setuserData({

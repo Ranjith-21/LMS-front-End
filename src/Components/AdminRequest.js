@@ -8,22 +8,21 @@ import { useState } from 'react';
 import FormComponent from './atoms/FormComponent';
 import ModalComponent from './atoms/ModalComponent';
 // import { FormComponent } from './atoms/FormComponent';
+import DropDown from './atoms/DropDown';
 
 
 function AdminRequest() {
   const [showReason, setshowReason] = useState(false)
+  const [showApprove, setshowApprove] = useState(false)
+  const [BatchName, setBatchName] = useState(['','1st Batch','2nd Batch','3rd Batch','4th Batch','5th Batch'])
+  const [BatchID, setBatchID] = useState(['','#1','#2','#3','#4','#5'])
 
-  let openShowReason = () => {
-    setshowReason(true)
-  }
-
-  let closeReason = () => {
-    setshowReason(false)
-  }
-
-  let handleClose = () => {
-    closeReason()
-  }
+  let openShowReason = () => {setshowReason(true)}
+  let closeReason = () => {setshowReason(false)}
+  let handleClose = () => {closeReason()}
+  let openShowApprove = () => {setshowApprove(true)}
+  let closeApprove = () => {setshowApprove(false)}
+  let handleCloseApprove = () => {closeApprove()}
 
 
   return (
@@ -67,16 +66,26 @@ function AdminRequest() {
             <td>90%</td>
             <td>Fresher</td>
             <td>7894561230</td>
-            <td><button className='Approve'  >Approve</button> &nbsp;  <button onClick={openShowReason} className='Reject'>Reject</button></td>
+            <td><button className='Approve'onClick={openShowApprove}  >Approve</button> &nbsp;  <button onClick={openShowReason} className='Reject'>Reject</button></td>
           </tr>
         </tbody>
       </Table>
 
 
-      <ModalComponent show={showReason} onHide={handleClose} title={'Reason For Rejection'} footerText={'Submit'}>
+      <ModalComponent show={showReason} onHide={handleClose} title={'Reason For Rejection'} footerText={'Submit'} onClick={handleClose}>
         <Modal.Body>
           <Form>
             <FormComponent label={'Reason'} type={'text'} placeholder={'Enter Reason'} className={"mb-3"} controlId={"exampleForm.ControlTextarea1"} as={"textarea"} rows={3} />
+          </Form>
+        </Modal.Body>
+      </ModalComponent>
+
+       <ModalComponent show={showApprove} onHide={handleCloseApprove} title={'Reason For Rejection'} footerText={'Submit'} onClick={handleCloseApprove}>
+        <Modal.Body>
+          <Form>
+            {/* <FormComponent label={'Reason'} type={'text'} placeholder={'Enter Reason'} className={"mb-3"} controlId={"exampleForm.ControlTextarea1"} as={"textarea"} rows={3} /> */}
+             <DropDown option={BatchName} label={'Batch Name'}/>
+             <DropDown option={BatchID} label={'Batch ID'}/>
           </Form>
         </Modal.Body>
       </ModalComponent>

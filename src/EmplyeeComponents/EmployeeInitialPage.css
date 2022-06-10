@@ -1,0 +1,25 @@
+tr,th
+{
+    padding: 10px;
+}
+
+td
+{
+    padding:15px 50px;
+}
+
+table
+{
+    font-size: 15px;
+    font-family:"Open Sans";
+}
+
+th
+{
+    font-size: 15px;
+}
+
+b
+{
+    font-size:18px;
+}

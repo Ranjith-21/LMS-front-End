@@ -18,7 +18,7 @@ function DataStore() {
         {
         employeeId:'Raju',
         password:'Raju123',
-        role:'employee'
+        role:'trainee'
         }
     ])
 
