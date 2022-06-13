@@ -42,6 +42,40 @@ function AdminRequest() {
     closeApprove();
   };
 
+  let primaryData = JSON.parse(localStorage.getItem("PrimaryData"));
+  let contact = JSON.parse(localStorage.getItem("contact Details"));
+  let educationData = JSON.parse(localStorage.getItem("educationData"));
+  let experience = JSON.parse(localStorage.getItem("Experience Details"));
+  console.log(primaryData);
+  console.log(contact);
+  console.log(educationData);
+  console.log(experience);
+  let empName = primaryData.EmpolyeeName;
+  let empID = primaryData.EmpolyeeId;
+  let yop=educationData.map((val)=>
+  {
+    return val.YearOfpassing;
+  })
+  let percen=educationData.map((val)=>
+  {
+    return val.PerCenTage;
+  })
+
+  let exp=experience.map((val)=>
+  {
+    return val.YearOfExperience;
+  })
+
+  let contacNo=contact.map((val)=>
+  {
+    return val.ContactNumber;
+  })
+
+  let getDataFromLocalStorage = JSON.parse(
+    localStorage.getItem("AllSignUpData")
+  );
+  console.log(getDataFromLocalStorage);
+ 
   return (
     <div>
       <Navbar style={{ height: "60px" }}>
@@ -86,17 +120,58 @@ function AdminRequest() {
           </tr>
         </thead>
         <tbody>
+            {getDataFromLocalStorage.map((val, index) => {
+              return (
+                <tr>
+                  <td>
+                    <input type="checkbox" />
+                  </td>
+                  <td>{index + 1}</td>
+                  <td>{val.primary.EmpolyeeId}</td>
+                  <td>{val.primary.EmpolyeeName}</td>
+                  <td>
+                    {val.education.map((val) => {
+                      return val.YearOfpassing;
+                    })}
+                  </td>
+                  <td>
+                    {val.education.map((val) => {
+                      return val.PerCenTage;
+                    })}
+                  </td>
+                  <td>
+                    {val.experience.map((val) => {
+                      return val.YearOfExperience;
+                    })}
+                  </td>
+                  <td>
+                    {val.contact.map((val) => {
+                      return val.ContactNumber;
+                    })}
+                  </td>
+                  <td>
+                    <button className="Approve" onClick={openShowApprove}>
+                      Approve
+                    </button>{" "}
+                    &nbsp;{" "}
+                    <button onClick={openShowReason} className="Reject">
+                      Reject
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
           <tr>
             <td>
               <input type="checkbox" />
             </td>
             <td>01</td>
-            <td>#1235646</td>
-            <td>Aditi</td>
-            <td>2022</td>
-            <td>90%</td>
-            <td>Fresher</td>
-            <td>7894561230</td>
+            <td>{empID}</td>
+            <td>{empName}</td>
+            <td>{yop}</td>
+            <td>{percen}</td>
+            <td>{exp}</td>
+            <td>{contacNo}</td>
             <td>
               <button className="Approve" onClick={openShowApprove}>
                 Approve

@@ -61,7 +61,7 @@ export const EmployeeDegree=[
         num:5
     },
     {
-        edu:'BE (Non-CSE',
+        edu:'BE (Non-CSE)',
         num:7
     },
     {

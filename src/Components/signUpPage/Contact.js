@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {Accordion, Button,Col,Container,Form,Nav,Navbar,Row,} from "react-bootstrap";
 import { useNavigate } from 'react-router';
 import ButtonComp from '../atoms/ButtonComp';
@@ -62,6 +62,7 @@ let submitData=()=>
   {
     DatasentToLocalStorage();
     navigate('/RecordStatus')
+     addData();
   }else
   {
     alert("Please Fill all the feilds");
@@ -72,6 +73,47 @@ let submitData=()=>
     {
         navigate('/TechnicalSkills')
     }
+
+
+    let getPrimaryData = JSON.parse(localStorage.getItem("PrimaryData"));
+    let getSecondaryData = JSON.parse(localStorage.getItem("SecondaryData"));
+    let getEducationData = JSON.parse(localStorage.getItem("educationData"));
+    let getAddressData = JSON.parse(localStorage.getItem("AddressDetails"));
+    let getBankData = JSON.parse(localStorage.getItem("Bank Details"));
+    let getTechnicalData = JSON.parse(localStorage.getItem("TechnicalSkills"));
+    let getExperience = JSON.parse(localStorage.getItem("Experience Details"));
+    let getContactData = JSON.parse(localStorage.getItem("contact Details"));
+
+    
+    let mediumPhase = {
+      primary: getPrimaryData,
+      secondary: getSecondaryData,
+      education: getEducationData,
+      address: getAddressData,
+      bank: getBankData,
+      technical: getTechnicalData,
+      experience: getExperience,
+      contact: getContactData,
+    };
+    console.log(mediumPhase);
+    
+    if(getPrimaryData && getSecondaryData && getEducationData && getAddressData && getBankData && getTechnicalData && getExperience && getContactData)
+    {
+      localStorage.setItem('mediumPhase',JSON.stringify(mediumPhase))
+    }
+    // const [data, setdata] = useState([mediumPhase]);
+    let getMediumPhase=JSON.parse(localStorage.getItem('mediumPhase'));
+    let getAllData = JSON.parse(localStorage.getItem("AllSignUpData"));
+    let addData=()=>
+    {
+      // let dataCopy=[]
+      // dataCopy.push(getMediumPhase);
+      // setdata(dataCopy);
+      getAllData.push(getMediumPhase);
+      localStorage.setItem("AllSignUpData", JSON.stringify(getAllData));
+      // console.log(dataCopy);
+    }
+  
     
     return (
       <div> <div className="container fluid">

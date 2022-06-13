@@ -141,7 +141,9 @@
     width: 250px;
     margin-top: 10px;
     padding: 10px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px ;
+    border: 3px solid #f1f2f3;
+        border-radius: 10px;
+    /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px ; */
 }
 .yearOfPassing
 {
@@ -149,7 +151,9 @@
     margin-top: 10px;
     margin-left: 10px;
     padding: 10px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px ;
+    border: 3px solid #f1f2f3;
+        border-radius: 10px;
+    /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px ; */
 }
 .Experiecnce
 {
@@ -157,22 +161,30 @@
     margin-top: 10px;
     margin-left: 10px;
     padding: 10px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px ;
+    border:3px solid #f1f2f3;
+    border-radius: 10px;
+    /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px ; */
 }
 .EmployeeDegree
 {
-    width:400px;
-    height:250px;
+    width:600px;
+    /* height:250px; */
     margin-top: 10px;
     margin-left: 10px;
     padding: 10px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px ;
+    border: 3px solid #f1f2f3;
+        border-radius: 10px;
+    /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px ; */
+    /* border:1px solid red */
 }
 .BatchPerformance
 {
-    width: 300px;
+    width: 400px;
+    height: 420px;
     margin-top: 10px;
     margin-left: 10px;
     padding: 10px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px ;
+    border: 3px solid #f1f2f3;
+        border-radius: 10px;
+    /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px ; */
 }

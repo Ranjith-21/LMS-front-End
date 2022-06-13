@@ -19,6 +19,9 @@ import Employee from './EmplyeeComponents/Employee';
 import AdminBatch from './Components/AdminBatch';
 import AdminMentor from './Components/AdminMentor';
 import AdminRequest from './Components/AdminRequest';
+import DashBoard from './Components/EmployeePage/DashBoard';
+import EmployeeBatch from './Components/EmployeePage/EmployeeBatch';
+// import { allData } from './Components/signUpPage/AllData';
 
 
 function App() {
@@ -26,6 +29,7 @@ function App() {
   return (
     <div>
       <DataStore/>
+      {/* <allData/> */}
       <Routes>
       <Route path='/' element={<LoginPage/>}/>
         <Route path="/Primary" element={<Primary/>} />
@@ -43,6 +47,8 @@ function App() {
            <Route path='/Admin/Batch' element={<AdminBatch/>} />
            <Route path='/Admin/Mentor' element={<AdminMentor/>} />
            <Route path='/Admin/Request' element={<AdminRequest/>} />
+           <Route path='/Dashboard' element={<DashBoard/>}/>
+            <Route path='/Mentor' element={<EmployeeBatch/>}/>
           </Routes>
      
     </div>

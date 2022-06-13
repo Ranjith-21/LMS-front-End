@@ -55,7 +55,7 @@ function SecondaryInfo() {
   };
 
   let navigatePrevious = () => {
-    navigate("/");
+    navigate("/Primary");
   };
 
   return (

@@ -26,6 +26,7 @@ function DashBoard() {
         ],
         // borderColor: "rgba(255,99,132,1)",
         // borderWidth: 1,
+        hoverOffset:30
       },
     ],
   });
@@ -36,14 +37,16 @@ function DashBoard() {
         label: "Employee Degree",
         data: EmployeeDegree.map((data) => data.num),
         backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          // '#02c5e9'
+          // "rgba(255, 99, 132, 0.2)",
+          // "rgba(54, 162, 235, 0.2)",
+          // "rgba(255, 206, 86, 0.2)",
+          // "rgba(75, 192, 192, 0.2)",
+          '#ff007c'
         ],
         borderColor: "rgba(255,99,132,1)",
         borderWidth: 1,
+        barPercentage: 0.15,
+        borderRadius: 10,
       },
     ],
   });
@@ -54,14 +57,16 @@ function DashBoard() {
         label: "Experience",
         data: experienceData.map((data) => data.number),
         backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          // '#02c5e9'
+          // "rgba(255, 99, 132, 0.2)",
+          // "rgba(54, 162, 235, 0.2)",
+          // "rgba(255, 206, 86, 0.2)",
+          // "rgba(75, 192, 192, 0.2)",
+        '#02c5e9'
         ],
-        borderColor: "rgba(255,99,132,1)",
+        // borderColor: "rgba(255,99,132,1)",
         borderWidth: 1,
+        barPercentage: 0.5,
+        borderRadius: 10,
       },
     ],
   });
@@ -72,14 +77,17 @@ function DashBoard() {
         label: "Year Of Passing",
         data: UserData.map((data) => data.numofstu),
         backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
+          // "rgba(255, 99, 132, 0.2)",
+          // "rgba(54, 162, 235, 0.2)",
+          // "rgba(255, 206, 86, 0.2)",
+          // "rgba(75, 192, 192, 0.2)",
           // '#02c5e9'
+          "#02c5e9",
         ],
-        borderColor: "rgba(255,99,132,1)",
+        // borderColor: "rgba(255,99,132,1)",
         borderWidth: 1,
+        barPercentage: 0.5,
+        borderRadius: 10,
       },
     ],
   });
@@ -90,46 +98,91 @@ function DashBoard() {
         label: "Gender",
         data: GenderData.map((data) => data.number),
         backgroundColor: ["#086288", "#ed9232"],
-        borderColor: "rgba(255,99,132,1)",
+        // borderColor: "rgba(255,99,132,1)",
         borderWidth: 1,
         // data:GenderData.map((data)=>data.female),
+        hoverOffset:10
       },
     ],
   });
   return (
     <div style={{ padding: "3px" }}>
       <div className="d-flex">
-        <div
-        className='Gender'
-        >
+        <div className="Gender">
           <b> Gender</b>
           <Doughnut data={genderData} />
         </div>
-        <div
-        className='yearOfPassing'
-        >
+        <div className="yearOfPassing">
           <b> Year Of Passing</b>
-          <Bar data={yearOfPassing} />
+          <Bar
+            data={yearOfPassing}
+            options={{
+              indexAxis: "y",
+              scales: {
+                x: {
+                  display: false,
+                  grid: {
+                    display: false,
+                  },
+                },
+                y: {
+                  grid: {
+                    display: false,
+                  },
+                },
+              },
+            }}
+          />
         </div>
-        <div
-        className='Experiecnce'
-        >
+        <div className="Experiecnce">
           <b>Experience</b>
-          <Bar data={experience} />
+          <Bar
+            data={experience}
+            options={{
+              indexAxis: "y",
+              scales: {
+                x: {
+                  display: false,
+                  grid: {
+                    display: false,
+                  },
+                },
+                y: {
+                  grid: {
+                    display: false,
+                  },
+                },
+              },
+            }}
+          />
         </div>
       </div>
-      <div className="d-flex" style={{marginLeft:'250px'}}>
-        <div
-        className='EmployeeDegree'
-        >
+      <div className="d-flex" style={{ marginLeft: "80px" }}>
+        <div className="EmployeeDegree">
           <b>Employee Degree</b>
-          <Bar data={degree} />
+          <Bar
+            data={degree}
+            options={{
+              scales: {
+                x: {
+                  display: true,
+                  grid: {
+                    display: false,
+                  },
+                },
+                y: {
+                  display:false,
+                  grid: {
+                    display: false,
+                  },
+                },
+              },
+            }}
+          />
         </div>
-        <div
-        className='BatchPerformance'
-        >
+        <div className="BatchPerformance">
           <b>Batch Performance</b>
-          <Pie data={batch} />
+          <Pie data={batch}  />
         </div>
       </div>
     </div>
