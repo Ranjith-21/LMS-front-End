@@ -1,5 +1,6 @@
 import React from 'react'
-import './../../EmplyeeComponents/EmployeeInitialPage.css'
+// import './../../EmplyeeComponents/EmployeeInitialPage.css'
+import './../../EmplyeeComponents/EmployeeDetails.css'
 
 function TableComponent({
     theading='',

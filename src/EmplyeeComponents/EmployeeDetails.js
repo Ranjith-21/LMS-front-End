@@ -44,10 +44,11 @@ function EmployeeDetails() {
     let sec2 = [
         { "Mother Name": secondaryData.MotherName },
         { "Father Name": secondaryData.FathersName },
+        { "Passport No": secondaryData.PassportNo },
     ]
     
     let sec3=[
-        { "Passport No": secondaryData.PassportNo },
+        {}
     ]
 
     let educ=

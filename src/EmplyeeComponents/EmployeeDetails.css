@@ -12,3 +12,7 @@
 {
     font-size: 25px;
 }
+.empTable td
+{
+    padding:10px 25px;
+}

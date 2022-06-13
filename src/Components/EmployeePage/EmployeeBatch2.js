@@ -15,28 +15,30 @@ import InputComp from '../atoms/InputComp';
 // import { FormComponent } from '../atoms/FormComponent';
 
 
-const text = <span>
-  <tr>
-    <td style={{padding:'8px'}}>Mock 1</td>
-    <td style={{color:'#24b83c'}}>Excellent</td>
-  </tr>
-  <tr>
-    <td style={{padding:'8px'}}>Mock 2</td>
-    <td style={{color:'#5b99eb'}}>Good</td>
-  </tr>
-  <tr>
-    <td style={{padding:'8px'}}>Mock 3</td>
-    <td style={{color:'#dda23c'}}>Above Average</td>
-  </tr>
-  <tr>
-    <td style={{padding:'8px'}}>Mock 4</td>
-    <td style={{color:'#e0be16'}}>Average</td>
-  </tr>
-  <tr>
-    <td style={{padding:'8px'}}>Mock 5</td>
-    <td style={{color:'#ec3e66'}}>Below Average</td>
-  </tr>
-</span>;
+const text = (
+  <span>
+    <tr>
+      <td style={{ color: "black", padding: "8px" }}>Mock 1</td>
+      <td style={{ color: "#24b83c" }}>Excellent</td>
+    </tr>
+    <tr>
+      <td style={{ color: "black", padding: "8px" }}>Mock 2</td>
+      <td style={{ color: "#5b99eb" }}>Good</td>
+    </tr>
+    <tr>
+      <td style={{ color: "black", padding: "8px" }}>Mock 3</td>
+      <td style={{ color: "#dda23c" }}>Above Average</td>
+    </tr>
+    <tr>
+      <td style={{ color: "black", padding: "8px" }}>Mock 4</td>
+      <td style={{ color: "#e0be16" }}>Average</td>
+    </tr>
+    <tr>
+      <td style={{ color: "black", padding: "8px" }}>Mock 5</td>
+      <td style={{ color: "#ec3e66" }}>Below Average</td>
+    </tr>
+  </span>
+);
 
 function EmployeeBatch2() {
   const [showStatus, setshowStatus] = useState(false)
@@ -48,6 +50,7 @@ function EmployeeBatch2() {
   ])
   const [panel, setpanel] = useState([1,2,3,4])
 
+  let color='white'
   let openRatings = () => {
     setshowRating(true)
   }
@@ -136,7 +139,7 @@ function EmployeeBatch2() {
             <td>abcd</td>
             <td>2/3</td>
             <td>
-              <Tooltip placement="bottom" title={text}>
+              <Tooltip placement="bottom" title={text} color={color}>
                 <button className='btntool' >
                   <i class="fa-solid fa-triangle-exclamation" style={{ fontSize: '25px' }}></i>
                 </button>

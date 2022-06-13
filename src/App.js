@@ -16,6 +16,9 @@ import DataStore from './Components/DataStore';
 import { Routes } from 'react-router-dom';
 import RecordStatus from './Components/signUpPage/RecordStatus';
 import Employee from './EmplyeeComponents/Employee';
+import AdminBatch from './Components/AdminBatch';
+import AdminMentor from './Components/AdminMentor';
+import AdminRequest from './Components/AdminRequest';
 
 
 function App() {
@@ -37,6 +40,9 @@ function App() {
            <Route path="/Contact" element={<Contact />} />
            <Route path='/RecordStatus' element={<RecordStatus/>}/>
            <Route path='/Employee' element={<Employee/>} />
+           <Route path='/Admin/Batch' element={<AdminBatch/>} />
+           <Route path='/Admin/Mentor' element={<AdminMentor/>} />
+           <Route path='/Admin/Request' element={<AdminRequest/>} />
           </Routes>
      
     </div>

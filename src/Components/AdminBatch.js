@@ -18,7 +18,6 @@ function AdminBatch() {
   const [mentor, setmentor] = useState(['Satyam', 'Shantala','Shambavi','Megha'])
   const [data, setdata] = useState([])
   const [batchData, setbatchData] = useState([{
-        id:1,
         batchName:'',
         mentorName:'',
         technologies:[],
@@ -68,7 +67,6 @@ function AdminBatch() {
         setdata(batchDataCopy)
         localStorage.setItem('AdminBatchData',JSON.stringify(batchDataCopy))
         setbatchData({
-          id:1,
           batchName:'',
           mentorName:'',
           technologies:[],
@@ -127,7 +125,6 @@ let sendDataToLocalStorage=()=>
 //***************************************************************************************** */
 //setting initial Data in LocalStorage
 let initialData=[{
-  id:1,
   batchName:'1st Batch',
   mentorName:'Satyam',
   technologies:[{value:'react',label:'react'},{value:'JavaScript',label:'JavaScript'}],

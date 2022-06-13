@@ -14,34 +14,37 @@ import FormComponent from '../atoms/FormComponent';
 import ModalComponent from '../atoms/ModalComponent';
 import InputComp from '../atoms/InputComp';
 // import { FormComponent } from './../atoms/FormComponent';
-const text = <span className='emptext'>
-  <tr>
-    <td>Initial Strength</td>
-    <td style={{color:'#5593ad'}}>100</td>
-  </tr>
-  <tr>
-    <td>Dropout</td>
-    <td style={{color:'#ee5074'}}>10</td>
-  </tr>
-  <tr>
-    <td>Terminated</td>
-    <td style={{color:'#ee5074'}}>10</td>
-  </tr>
-  <tr>
-    <td>Absconding</td>
-    <td style={{color:'#ee5074'}}>10</td>
-  </tr>
-  <tr>
-    <td>Present Strength</td>
-    <td style={{color:'#5593ad'}}>70</td>
-  </tr>
-</span>;
+const text = (
+  <span className="emptext">
+    <tr>
+      <td style={{ color: "black" }}>Initial Strength</td>
+      <td style={{ color: "#5593ad" }}>100</td>
+    </tr>
+    <tr>
+      <td style={{ color: "black" }}>Dropout</td>
+      <td style={{ color: "#ee5074" }}>10</td>
+    </tr>
+    <tr>
+      <td style={{ color: "black" }}>Terminated</td>
+      <td style={{ color: "#ee5074" }}>10</td>
+    </tr>
+    <tr>
+      <td style={{ color: "black" }}>Absconding</td>
+      <td style={{ color: "#ee5074" }}>10</td>
+    </tr>
+    <tr>
+      <td style={{ color: "black" }}>Present Strength</td>
+      <td style={{ color: "#5593ad" }}>70</td>
+    </tr>
+  </span>
+);
 
 function EmployeeBatch({setPage}) {
   const [showStatus, setshowStatus] = useState(false)
   const [showAttendance, setshowAttendance] = useState(false)
   let date = new Date()
   date = date.toLocaleDateString()
+  let color='white'
 
   let openStatus = () => setshowStatus(true)
   let closeStatus = () => setshowStatus(false)
@@ -114,7 +117,7 @@ function EmployeeBatch({setPage}) {
             </select></td>
             <td>
 
-              <Tooltip placement="bottom" title={text}> 
+              <Tooltip placement="bottom" title={text} color={color}> 
                 <button className='btntool' >
                   <i class="fa-solid fa-triangle-exclamation" style={{ fontSize: '25px' }}></i>
                 </button>

@@ -66,9 +66,9 @@ let logout=()=>
           <Navbar.Toggle />
           <Navbar.Text className='justify-content-center' style={{width:'500px'}} >
             <div class="form-group has-search">
-              <span class="fa fa-search form-control-feedback"></span>
+              <span class="fa fa-search form-control-feedback" style={{marginTop:'-2px'}}></span>
               {/* <input type="text" class="form-control" placeholder="Search" style={{ width: '500px' }} /> */}
-              <InputComponent placeholder='Search' style={{width:"100%"}}  type='text' className='form-control'/>
+              <InputComponent placeholder='Search Mentor/Employee' style={{width:"100%"}}  type='text' className='form-control'/>
             </div>
           </Navbar.Text>
           <Navbar.Text className='jsutify-content-end'  >

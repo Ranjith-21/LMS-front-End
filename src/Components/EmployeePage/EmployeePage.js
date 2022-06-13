@@ -53,8 +53,8 @@ let logout=()=>
           <Navbar.Toggle />
           <Navbar.Text className='justify-content-center' style={{width:'500px'}} >
             <div class="form-group has-search">
-              <span class="fa fa-search form-control-feedback"></span>
-              <InputComponent placeholder='Search' style={{width:"100%"}}  type='text' className='form-control'/>
+              <span class="fa fa-search form-control-feedback" style={{marginTop:'-3px'}}></span>
+              <InputComponent placeholder='Search Employee' style={{width:"100%"}}  type='text' className='form-control'/>
             </div>
           </Navbar.Text>
           <Navbar.Text  className="d-flex avatar">
@@ -103,12 +103,9 @@ let logout=()=>
           </div>
           <Breadcrumb className='adminBread'>
           <Breadcrumb.Item href="#" active>Home</Breadcrumb.Item>
-          <Breadcrumb.Item href='/Admin/Batch'>Batch</Breadcrumb.Item>
+          <Breadcrumb.Item >Dashboard</Breadcrumb.Item>
           <Breadcrumb.Item href="/Admin/Mentor">
             Mentor
-          </Breadcrumb.Item>
-          <Breadcrumb.Item href="/Admin/Request">
-            Request
           </Breadcrumb.Item>
         </Breadcrumb>
         <div className=' adminRoutes col-lg-10 col-md-10 col-sm-10 col-xs-10' >

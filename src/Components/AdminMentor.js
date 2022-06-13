@@ -173,7 +173,7 @@ getdataFromLocalStorage=JSON.parse(localStorage.getItem('AddMentorData'))
 
           <tr>
             <td><input type='checkbox' /></td>
-            <td>0</td>
+            <td>01</td>
             <td>Chandan</td>
             <td>#1235646</td>
             <td>abc@info.com</td>

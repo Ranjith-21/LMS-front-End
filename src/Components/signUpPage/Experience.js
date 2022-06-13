@@ -7,12 +7,12 @@ import FormSelect from "../atoms/FormSelect";
 
 function Experience() {
   const [inputList, setInputList] = useState([{
-    CompanyName: "",
-    YearOfExperience: "",
-    DateOfJoining: "",
-    DateOfRelieving: "",
-    Designation: "",
-    Location: "",
+    CompanyName: " ",
+    YearOfExperience: " ",
+    DateOfJoining: " ",
+    DateOfRelieving: " ",
+    Designation: " ",
+    Location: " ",
   }]);
 
   const [exp, setexp] = useState([
